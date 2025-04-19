@@ -1,32 +1,42 @@
 import Announcements from "@/components/Announcements";
 import BigCalendarContainer from "@/components/BigCalendarContainer";
+import BigCalendar from "@/components/BigCalender";
+import EventCalendar from "@/components/EventCalendar";
 import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 
 
-
-const TeacherPage = async () => {
+const StudentPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers()
 });
 
   const userId = session?.user.id;
+  console.log(userId)
+
+  const classItem = await prisma.class.findMany({
+    where: {
+      students: { some: { id: userId! } },
+    },
+  });
 
   return (
-    <div className="flex-1 p-4 flex gap-4 flex-col xl:flex-row">
+    <div className="p-4 flex gap-4 flex-col xl:flex-row">
       {/* LEFT */}
       <div className="w-full xl:w-2/3">
         <div className="h-full bg-white p-4 rounded-md">
-          <h1 className="text-xl font-semibold">Schedule</h1>
-          <BigCalendarContainer type="teacherId" id={userId!} />
+          <h1 className="text-xl font-semibold">Schedule (4A)</h1>
+          {/* <BigCalendarContainer type="classId" id={classItem[0].id} /> */}
         </div>
       </div>
       {/* RIGHT */}
       <div className="w-full xl:w-1/3 flex flex-col gap-8">
+        <EventCalendar />
         <Announcements />
       </div>
     </div>
   );
 };
 
-export default TeacherPage;
+export default StudentPage;

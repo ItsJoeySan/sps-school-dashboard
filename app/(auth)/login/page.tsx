@@ -26,20 +26,7 @@ export default function LoginPage() {
       {
         email: email,
         password: password,
-        fetchOptions: {
-          onSuccess: async () => {
-           const role = await fetch("/api/getSession").then((response) => response.json());
-           router.push(`/${role}`);
-          },
-          onError: (ctx) => {
-            // Handle the error
-            if (ctx.error.status === 403) {
-              alert("Please verify your email address");
-            }
-            //you can also show the original error message
-            alert(ctx.error.message);
-          },
-        },
+        callbackURL: "/",
       },
       {
         onError: (ctx) => {

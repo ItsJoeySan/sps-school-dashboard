@@ -7,7 +7,6 @@ import {getSessionCookie} from "better-auth/cookies";
 
 
 const authRoutes = ["/login", "/signup"];
-const homeRoutes = ["/"];
 
 const matchers = Object.keys(routeAccessMap).map((route) => ({
   matcher: createRouteMatcher([route]),
@@ -17,7 +16,6 @@ const matchers = Object.keys(routeAccessMap).map((route) => ({
 export const middleware = async (req: NextRequest) => {
   const pathName = req.nextUrl.pathname;
   const isAuthRoute = authRoutes.includes(pathName); //true or false
-  const isHomeRoute = homeRoutes.includes(pathName);
 
   const sessionCookie = getSessionCookie(req);
 
@@ -33,10 +31,11 @@ export const middleware = async (req: NextRequest) => {
 
 
 //session yes, isAuthRoute yes, why are you trying to login again go back,
-if(isAuthRoute || isHomeRoute){
+if(isAuthRoute){
 
-  return NextResponse.redirect(new URL(`/logout`, req.url));
+  return NextResponse.redirect(new URL(`/`, req.url));
 }
+
 
   return NextResponse.next();
 };

@@ -4,14 +4,11 @@ import CountChartContainer from "@/components/CountChartContainer";
 import EventCalendarContainer from "@/components/EventCalendarContainer";
 import FinanceChart from "@/components/FinanceChart";
 import UserCard from "@/components/UserCard";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 
 
 const AdminPage = async  (props: {
   searchParams: Promise<{ [keys: string]: string | undefined }>
 }) => {
-
   return (
     <div className="p-4 flex gap-4 flex-col md:flex-row">
       {/* LEFT */}
