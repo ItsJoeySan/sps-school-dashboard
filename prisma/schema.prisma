@@ -87,6 +87,7 @@ model Student {
   bloodType   String
   gender      UserGender?
   createdAt   DateTime     @default(now())
+  updatedAt   DateTime  @updatedAt
   parentName  String
   classId     String       @db.ObjectId
   class       Class        @relation(fields: [classId], references: [id])
@@ -95,7 +96,7 @@ model Student {
   attendances Attendance[]
   results     Result[]
   birthday    DateTime
-  User        User         @relation(fields: [userId], references: [id])
+  User        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String       @unique @db.ObjectId
 }
 
@@ -116,7 +117,7 @@ model Teacher {
   lessons    Lesson[]
   classes    Class[]
   birthday   DateTime
-  User       User        @relation(fields: [userId], references: [id])
+  User       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String      @unique @db.ObjectId
 }
 
@@ -199,7 +200,7 @@ model Result {
   assignmentId String?     @db.ObjectId
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   studentId    String      @db.ObjectId
-  student      Student     @relation(fields: [studentId], references: [id])
+  student      Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model Attendance {

@@ -24,7 +24,6 @@ export default function SignupPage() {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const name = formData.get("name") as string;
-    console.log(email, password, name);
 
     const { data, error } = await authClient.signUp.email({
       email,

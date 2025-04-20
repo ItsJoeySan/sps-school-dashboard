@@ -36,6 +36,10 @@ const EventForm = ({
     formState: { errors },
   } = useForm<EventSchema>({
     resolver: zodResolver(eventSchema),
+
+    //you should add default values from here
+    // defaultValues:{
+    // }
   });
 
 
@@ -95,7 +99,7 @@ const EventForm = ({
         <InputField
           label="Start Date"
           name="startTime"
-          defaultValue={data?.startTime}
+          defaultValue={data?.startTime?.toISOString().split("T")[0]}
           register={register}
           error={errors?.startTime}
           type="date"
@@ -103,10 +107,19 @@ const EventForm = ({
         <InputField
           label="End Date"
           name="endTime"
-          defaultValue={data?.endTime}
+          defaultValue={data?.endTime?.toISOString().split("T")[0]}
           register={register}
           error={errors?.endTime}
           type="date"
+        />
+        <InputField
+        label=""
+          name="id"
+          defaultValue={data?.id}
+          register={register}
+          error={errors?.id}
+          type="hidden"
+          
         />
       </div>
       {state.error && (

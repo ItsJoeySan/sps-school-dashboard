@@ -13,7 +13,6 @@ const StudentPage = async () => {
 });
 
   const userId = session?.user.id;
-  console.log(userId)
 
   const classItem = await prisma.class.findMany({
     where: {

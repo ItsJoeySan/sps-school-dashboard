@@ -2,6 +2,7 @@
 
 import {
   deleteClass,
+  deleteEvent,
   deleteExam,
   deleteStudent,
   deleteSubject,
@@ -27,7 +28,7 @@ const deleteActionMap = {
   assignment: deleteSubject,
   result: deleteSubject,
   attendance: deleteSubject,
-  event: deleteSubject,
+  event: deleteEvent,
   announcement: deleteSubject,
 };
 
@@ -134,6 +135,7 @@ const FormModal = ({
   const [open, setOpen] = useState(false);
 
   const Form = () => {
+    
     const [state, formAction] = useActionState(deleteActionMap[table], {
       success: false,
       error: false,
@@ -148,7 +150,6 @@ const FormModal = ({
         router.refresh();
       }
     }, [state, router]);
-
     return type === "delete" && id ? (
       <form action={formAction} className="p-4 flex flex-col gap-4">
         <input type="text | number" name="id" defaultValue={id} hidden />

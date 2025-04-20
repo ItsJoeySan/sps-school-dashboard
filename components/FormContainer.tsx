@@ -22,7 +22,7 @@ export type FormContainerProps = {
     | "announcement";
   type: "create" | "update" | "delete";
   data?: any;
-  id?: number | string;
+  id?: string;
 };
 
 const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
@@ -30,7 +30,6 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
   const session = await auth.api.getSession({
     headers: await headers()
   })
-
   const currentUserId = session?.user.id;
   const role = session?.user.role;
 

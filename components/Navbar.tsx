@@ -10,6 +10,7 @@ const Navbar = async () => {
 });
   const userName = session?.user.name
   const role = session?.user.role
+  const avatar = session?.user.image as string
   return (
     <div className="flex items-center justify-between p-4">
       {/* SEARCH BAR */}
@@ -38,7 +39,7 @@ const Navbar = async () => {
             {role}
           </span>
         </div>
-        {/* <Image src="/avatar.png" alt="" width={36} height={36} className="rounded-full"/> */}
+        <Image src={session?.user.image ? avatar : "/avatar.png"} alt="" width={36} height={36} className="rounded-full"/>
         {/* <UserButton /> */}
       </div>
     </div>
