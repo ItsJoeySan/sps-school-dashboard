@@ -7939,6 +7939,7 @@ export namespace Prisma {
     bloodType: string | null
     gender: $Enums.UserGender | null
     createdAt: Date | null
+    updatedAt: Date | null
     parentName: string | null
     classId: string | null
     gradeId: string | null
@@ -7958,6 +7959,7 @@ export namespace Prisma {
     bloodType: string | null
     gender: $Enums.UserGender | null
     createdAt: Date | null
+    updatedAt: Date | null
     parentName: string | null
     classId: string | null
     gradeId: string | null
@@ -7977,6 +7979,7 @@ export namespace Prisma {
     bloodType: number
     gender: number
     createdAt: number
+    updatedAt: number
     parentName: number
     classId: number
     gradeId: number
@@ -7998,6 +8001,7 @@ export namespace Prisma {
     bloodType?: true
     gender?: true
     createdAt?: true
+    updatedAt?: true
     parentName?: true
     classId?: true
     gradeId?: true
@@ -8017,6 +8021,7 @@ export namespace Prisma {
     bloodType?: true
     gender?: true
     createdAt?: true
+    updatedAt?: true
     parentName?: true
     classId?: true
     gradeId?: true
@@ -8036,6 +8041,7 @@ export namespace Prisma {
     bloodType?: true
     gender?: true
     createdAt?: true
+    updatedAt?: true
     parentName?: true
     classId?: true
     gradeId?: true
@@ -8128,6 +8134,7 @@ export namespace Prisma {
     bloodType: string
     gender: $Enums.UserGender | null
     createdAt: Date
+    updatedAt: Date
     parentName: string
     classId: string
     gradeId: string
@@ -8164,6 +8171,7 @@ export namespace Prisma {
     bloodType?: boolean
     gender?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     parentName?: boolean
     classId?: boolean
     gradeId?: boolean
@@ -8191,6 +8199,7 @@ export namespace Prisma {
     bloodType?: boolean
     gender?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     parentName?: boolean
     classId?: boolean
     gradeId?: boolean
@@ -8198,7 +8207,7 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "surname" | "email" | "phone" | "address" | "image" | "bloodType" | "gender" | "createdAt" | "parentName" | "classId" | "gradeId" | "birthday" | "userId", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "surname" | "email" | "phone" | "address" | "image" | "bloodType" | "gender" | "createdAt" | "updatedAt" | "parentName" | "classId" | "gradeId" | "birthday" | "userId", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassDefaultArgs<ExtArgs>
     grade?: boolean | GradeDefaultArgs<ExtArgs>
@@ -8229,6 +8238,7 @@ export namespace Prisma {
       bloodType: string
       gender: $Enums.UserGender | null
       createdAt: Date
+      updatedAt: Date
       parentName: string
       classId: string
       gradeId: string
@@ -8642,6 +8652,7 @@ export namespace Prisma {
     readonly bloodType: FieldRef<"Student", 'String'>
     readonly gender: FieldRef<"Student", 'UserGender'>
     readonly createdAt: FieldRef<"Student", 'DateTime'>
+    readonly updatedAt: FieldRef<"Student", 'DateTime'>
     readonly parentName: FieldRef<"Student", 'String'>
     readonly classId: FieldRef<"Student", 'String'>
     readonly gradeId: FieldRef<"Student", 'String'>
@@ -20696,6 +20707,7 @@ export namespace Prisma {
     bloodType: 'bloodType',
     gender: 'gender',
     createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     parentName: 'parentName',
     classId: 'classId',
     gradeId: 'gradeId',
@@ -21349,6 +21361,7 @@ export namespace Prisma {
     bloodType?: StringFilter<"Student"> | string
     gender?: EnumUserGenderNullableFilter<"Student"> | $Enums.UserGender | null
     createdAt?: DateTimeFilter<"Student"> | Date | string
+    updatedAt?: DateTimeFilter<"Student"> | Date | string
     parentName?: StringFilter<"Student"> | string
     classId?: StringFilter<"Student"> | string
     gradeId?: StringFilter<"Student"> | string
@@ -21373,6 +21386,7 @@ export namespace Prisma {
     bloodType?: SortOrder
     gender?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     parentName?: SortOrder
     classId?: SortOrder
     gradeId?: SortOrder
@@ -21401,6 +21415,7 @@ export namespace Prisma {
     bloodType?: StringFilter<"Student"> | string
     gender?: EnumUserGenderNullableFilter<"Student"> | $Enums.UserGender | null
     createdAt?: DateTimeFilter<"Student"> | Date | string
+    updatedAt?: DateTimeFilter<"Student"> | Date | string
     parentName?: StringFilter<"Student"> | string
     classId?: StringFilter<"Student"> | string
     gradeId?: StringFilter<"Student"> | string
@@ -21424,6 +21439,7 @@ export namespace Prisma {
     bloodType?: SortOrder
     gender?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     parentName?: SortOrder
     classId?: SortOrder
     gradeId?: SortOrder
@@ -21449,6 +21465,7 @@ export namespace Prisma {
     bloodType?: StringWithAggregatesFilter<"Student"> | string
     gender?: EnumUserGenderNullableWithAggregatesFilter<"Student"> | $Enums.UserGender | null
     createdAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     parentName?: StringWithAggregatesFilter<"Student"> | string
     classId?: StringWithAggregatesFilter<"Student"> | string
     gradeId?: StringWithAggregatesFilter<"Student"> | string
@@ -22602,6 +22619,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     birthday: Date | string
     class: ClassCreateNestedOneWithoutStudentsInput
@@ -22623,6 +22641,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     gradeId: string
@@ -22643,6 +22662,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -22663,6 +22683,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
@@ -22684,6 +22705,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     gradeId: string
@@ -22702,6 +22724,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22717,6 +22740,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
@@ -23868,6 +23892,7 @@ export namespace Prisma {
     bloodType?: SortOrder
     gender?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     parentName?: SortOrder
     classId?: SortOrder
     gradeId?: SortOrder
@@ -23887,6 +23912,7 @@ export namespace Prisma {
     bloodType?: SortOrder
     gender?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     parentName?: SortOrder
     classId?: SortOrder
     gradeId?: SortOrder
@@ -23906,6 +23932,7 @@ export namespace Prisma {
     bloodType?: SortOrder
     gender?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     parentName?: SortOrder
     classId?: SortOrder
     gradeId?: SortOrder
@@ -26078,6 +26105,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     birthday: Date | string
     class: ClassCreateNestedOneWithoutStudentsInput
@@ -26098,6 +26126,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     gradeId: string
@@ -26260,6 +26289,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -26279,6 +26309,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
@@ -27168,6 +27199,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     birthday: Date | string
     class: ClassCreateNestedOneWithoutStudentsInput
@@ -27188,6 +27220,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     birthday: Date | string
@@ -27267,6 +27300,7 @@ export namespace Prisma {
     bloodType?: StringFilter<"Student"> | string
     gender?: EnumUserGenderNullableFilter<"Student"> | $Enums.UserGender | null
     createdAt?: DateTimeFilter<"Student"> | Date | string
+    updatedAt?: DateTimeFilter<"Student"> | Date | string
     parentName?: StringFilter<"Student"> | string
     classId?: StringFilter<"Student"> | string
     gradeId?: StringFilter<"Student"> | string
@@ -27379,6 +27413,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     birthday: Date | string
     grade: GradeCreateNestedOneWithoutStudentsInput
@@ -27399,6 +27434,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     gradeId: string
     birthday: Date | string
@@ -28366,6 +28402,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     birthday: Date | string
     class: ClassCreateNestedOneWithoutStudentsInput
@@ -28386,6 +28423,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     gradeId: string
@@ -28471,6 +28509,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -28490,6 +28529,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
@@ -28510,6 +28550,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     birthday: Date | string
     class: ClassCreateNestedOneWithoutStudentsInput
@@ -28530,6 +28571,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     gradeId: string
@@ -28596,6 +28638,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -28615,6 +28658,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
@@ -29026,6 +29070,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     classId: string
     birthday: Date | string
@@ -29050,6 +29095,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -29069,6 +29115,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29088,6 +29135,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29142,6 +29190,7 @@ export namespace Prisma {
     bloodType: string
     gender?: $Enums.UserGender | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     parentName: string
     gradeId: string
     birthday: Date | string
@@ -29210,6 +29259,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
     grade?: GradeUpdateOneRequiredWithoutStudentsNestedInput
@@ -29229,6 +29279,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29248,6 +29299,7 @@ export namespace Prisma {
     bloodType?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumUserGenderFieldUpdateOperationsInput | $Enums.UserGender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentName?: StringFieldUpdateOperationsInput | string
     gradeId?: StringFieldUpdateOperationsInput | string
     birthday?: DateTimeFieldUpdateOperationsInput | Date | string

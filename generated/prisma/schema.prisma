@@ -87,6 +87,7 @@ model Student {
   bloodType   String
   gender      UserGender?
   createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   parentName  String
   classId     String       @db.ObjectId
   class       Class        @relation(fields: [classId], references: [id])

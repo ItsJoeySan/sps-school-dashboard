@@ -11,7 +11,7 @@ import { auth } from "@/lib/auth";
 
 
 type ResultList = {
-  id: number;
+  id: string;
   title: string;
   studentName: string;
   studentSurname: string;

@@ -181,6 +181,7 @@ exports.Prisma.StudentScalarFieldEnum = {
   bloodType: 'bloodType',
   gender: 'gender',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   parentName: 'parentName',
   classId: 'classId',
   gradeId: 'gradeId',
