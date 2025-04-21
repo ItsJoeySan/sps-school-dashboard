@@ -1,9 +1,12 @@
 "use client";
 
 import {
+  deleteAlumni,
   deleteClass,
   deleteEvent,
   deleteExam,
+  deleteJob,
+  deleteResource,
   deleteStudent,
   deleteSubject,
   deleteTeacher,
@@ -17,12 +20,12 @@ import { toast } from "react-toastify";
 import { FormContainerProps } from "./FormContainer";
 
 const deleteActionMap = {
-  subject: deleteSubject, 
+  subject: deleteSubject,
   class: deleteClass,
   teacher: deleteTeacher,
   student: deleteStudent,
   exam: deleteExam,
-// TODO: OTHER DELETE ACTIONS
+  // TODO: OTHER DELETE ACTIONS
   // parent: deleteSubject,
   lesson: deleteSubject,
   assignment: deleteSubject,
@@ -30,6 +33,9 @@ const deleteActionMap = {
   attendance: deleteSubject,
   event: deleteEvent,
   announcement: deleteSubject,
+  alumni: deleteAlumni,
+  resource: deleteResource,
+  job: deleteJob,
 };
 
 // USE LAZY LOADING
@@ -55,8 +61,16 @@ const ExamForm = dynamic(() => import("./forms/ExamForm"), {
 const EventForm = dynamic(() => import("./forms/EventForm"), {
   loading: () => <h1>Loading...</h1>,
 });
+const AlumniForm = dynamic(() => import("./forms/AlumniForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const ResourceForm = dynamic(() => import("./forms/ResourceForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const JobForm = dynamic(() => import("./forms/JobForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
 // TODO: OTHER FORMS
-
 
 const forms: {
   [key: string]: (
@@ -108,13 +122,37 @@ const forms: {
     // TODO OTHER LIST ITEMS
   ),
   event: (setOpen, type, data, relatedData) => (
-    <EventForm 
+    <EventForm
       type={type}
       data={data}
       setOpen={setOpen}
       relatedData={relatedData}
     />
-  )
+  ),
+  alumni: (setOpen, type, data, relatedData) => (
+    <AlumniForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  resource: (setOpen, type, data, relatedData) => (
+    <ResourceForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  job: (setOpen, type, data, relatedData) => (
+    <JobForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
 };
 
 const FormModal = ({
@@ -135,7 +173,6 @@ const FormModal = ({
   const [open, setOpen] = useState(false);
 
   const Form = () => {
-    
     const [state, formAction] = useActionState(deleteActionMap[table], {
       success: false,
       error: false,

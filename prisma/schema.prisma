@@ -87,7 +87,7 @@ model Student {
   bloodType   String
   gender      UserGender?
   createdAt   DateTime     @default(now())
-  updatedAt   DateTime  @updatedAt
+  updatedAt   DateTime     @updatedAt
   parentName  String
   classId     String       @db.ObjectId
   class       Class        @relation(fields: [classId], references: [id])
@@ -221,10 +221,10 @@ model Event {
   category    String
   startTime   DateTime
   endTime     DateTime
-  classId String? @db.ObjectId
-  class   Class?  @relation(fields: [classId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
+  classId     String?  @db.ObjectId
+  class       Class?   @relation(fields: [classId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
 }
 
 model Announcement {
@@ -235,6 +235,35 @@ model Announcement {
 
   classId String? @db.ObjectId
   class   Class?  @relation(fields: [classId], references: [id])
+}
+
+model Alumni {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  designation String
+  batch       String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
+}
+
+model Resource {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  file      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model Job {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  position   String
+  branch     BranchType
+  jobType    JobType
+  experience String
+  deadline   DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt()
 }
 
 enum UserGender {
@@ -256,4 +285,14 @@ enum Day {
   WEDNESDAY
   THURSDAY
   FRIDAY
+}
+
+enum BranchType {
+  PRIMARY
+  SECONDARY
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
 }

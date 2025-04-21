@@ -288,6 +288,35 @@ exports.Prisma.AnnouncementScalarFieldEnum = {
   classId: 'classId'
 };
 
+exports.Prisma.AlumniScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  designation: 'designation',
+  batch: 'batch',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ResourceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  file: 'file',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.JobScalarFieldEnum = {
+  id: 'id',
+  position: 'position',
+  branch: 'branch',
+  jobType: 'jobType',
+  experience: 'experience',
+  deadline: 'deadline',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -310,6 +339,16 @@ exports.Day = exports.$Enums.Day = {
   FRIDAY: 'FRIDAY'
 };
 
+exports.BranchType = exports.$Enums.BranchType = {
+  PRIMARY: 'PRIMARY',
+  SECONDARY: 'SECONDARY'
+};
+
+exports.JobType = exports.$Enums.JobType = {
+  FULL_TIME: 'FULL_TIME',
+  PART_TIME: 'PART_TIME'
+};
+
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   User: 'User',
@@ -327,7 +366,10 @@ exports.Prisma.ModelName = {
   Result: 'Result',
   Attendance: 'Attendance',
   Event: 'Event',
-  Announcement: 'Announcement'
+  Announcement: 'Announcement',
+  Alumni: 'Alumni',
+  Resource: 'Resource',
+  Job: 'Job'
 };
 
 /**

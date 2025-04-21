@@ -125,3 +125,34 @@ export const eventSchema = z.object({
 });
 
 export type EventSchema = z.infer<typeof eventSchema>;
+
+
+export const alumniSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(1, {message: "name is required!"}),
+  designation: z.string().min(1, {message: "designation is required!"}),
+  batch: z.string().min(1, {message: "batch is required!"}),
+  image: z.string().optional(),
+});
+
+export type AlumniSchema = z.infer<typeof alumniSchema>;
+
+
+export const resourceSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().min(1, {message: "title is required!"}),
+  file: z.string({message: "resource file is required!"})
+});
+
+export type ResourceSchema = z.infer<typeof resourceSchema>;
+
+export const jobSchema = z.object({
+  id: z.string().optional(),
+  position: z.string().min(1, { message: "position name is required!" }),
+  branch: z.enum(["PRIMARY", "SECONDARY"], { message: "branch name is required!" }),
+  jobType: z.enum(["PART_TIME", "FULL_TIME"], { message: "jobType is required!" }),
+  experience:  z.string().min(1, { message: "experience name is required!" }),
+  deadline: z.coerce.date({ message: "End time is required!" }),
+});
+
+export type JobSchema = z.infer<typeof jobSchema>

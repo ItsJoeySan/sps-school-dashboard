@@ -1,9 +1,7 @@
 import prisma from "@/lib/prisma";
 import FormModal from "./FormModal";
 
-import { authClient } from "@/lib/auth-client"
 import { auth } from "@/lib/auth";
-import Head from "next/head";
 import { headers } from "next/headers";
 
 export type FormContainerProps = {
@@ -19,7 +17,10 @@ export type FormContainerProps = {
     | "result"
     | "attendance"
     | "event"
-    | "announcement";
+    | "announcement"
+    | "alumni"
+    | "resource"
+    | "job";
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
@@ -28,15 +29,14 @@ export type FormContainerProps = {
 const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
   let relatedData = {};
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
   const currentUserId = session?.user.id;
   const role = session?.user.role;
 
   // const session = await authClient.getSession()
   // const userId = session.data?.user.id
   // const role = session.data?.user.role
-
 
   if (type !== "delete") {
     switch (table) {
@@ -79,16 +79,38 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
         });
         relatedData = { lessons: examLessons };
         break;
-        case "event":
-          const events = await prisma.event.findMany({
+      case "event":
+        const events = await prisma.event.findMany({
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+        relatedData = { events: events };
+        break;
+      case "alumni":
+        const alumnis = await prisma.alumni.findMany({
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+        relatedData = { alumnis: alumnis };
+        break;
+      case "resource":
+        const resources = await prisma.resource.findMany({
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+        relatedData = { resources: resources };
+        break;
+        case "job":
+          const jobs = await prisma.job.findMany({
             orderBy: {
-              createdAt: 'desc'
-            }
+              createdAt: "desc",
+            },
           });
-          relatedData = { events: events };
+          relatedData = { jobs: jobs };
           break;
-  
-
       default:
         break;
     }

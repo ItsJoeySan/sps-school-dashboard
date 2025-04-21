@@ -98,6 +98,21 @@ export type Event = $Result.DefaultSelection<Prisma.$EventPayload>
  * 
  */
 export type Announcement = $Result.DefaultSelection<Prisma.$AnnouncementPayload>
+/**
+ * Model Alumni
+ * 
+ */
+export type Alumni = $Result.DefaultSelection<Prisma.$AlumniPayload>
+/**
+ * Model Resource
+ * 
+ */
+export type Resource = $Result.DefaultSelection<Prisma.$ResourcePayload>
+/**
+ * Model Job
+ * 
+ */
+export type Job = $Result.DefaultSelection<Prisma.$JobPayload>
 
 /**
  * Enums
@@ -132,6 +147,22 @@ export const Day: {
 
 export type Day = (typeof Day)[keyof typeof Day]
 
+
+export const BranchType: {
+  PRIMARY: 'PRIMARY',
+  SECONDARY: 'SECONDARY'
+};
+
+export type BranchType = (typeof BranchType)[keyof typeof BranchType]
+
+
+export const JobType: {
+  FULL_TIME: 'FULL_TIME',
+  PART_TIME: 'PART_TIME'
+};
+
+export type JobType = (typeof JobType)[keyof typeof JobType]
+
 }
 
 export type UserGender = $Enums.UserGender
@@ -145,6 +176,14 @@ export const UserRole: typeof $Enums.UserRole
 export type Day = $Enums.Day
 
 export const Day: typeof $Enums.Day
+
+export type BranchType = $Enums.BranchType
+
+export const BranchType: typeof $Enums.BranchType
+
+export type JobType = $Enums.JobType
+
+export const JobType: typeof $Enums.JobType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -407,6 +446,36 @@ export class PrismaClient<
     * ```
     */
   get announcement(): Prisma.AnnouncementDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.alumni`: Exposes CRUD operations for the **Alumni** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Alumni
+    * const alumni = await prisma.alumni.findMany()
+    * ```
+    */
+  get alumni(): Prisma.AlumniDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.resource`: Exposes CRUD operations for the **Resource** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Resources
+    * const resources = await prisma.resource.findMany()
+    * ```
+    */
+  get resource(): Prisma.ResourceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.job`: Exposes CRUD operations for the **Job** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Jobs
+    * const jobs = await prisma.job.findMany()
+    * ```
+    */
+  get job(): Prisma.JobDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -863,7 +932,10 @@ export namespace Prisma {
     Result: 'Result',
     Attendance: 'Attendance',
     Event: 'Event',
-    Announcement: 'Announcement'
+    Announcement: 'Announcement',
+    Alumni: 'Alumni',
+    Resource: 'Resource',
+    Job: 'Job'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -882,7 +954,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "user" | "session" | "account" | "verification" | "student" | "teacher" | "grade" | "class" | "subject" | "lesson" | "exam" | "assignment" | "result" | "attendance" | "event" | "announcement"
+      modelProps: "admin" | "user" | "session" | "account" | "verification" | "student" | "teacher" | "grade" | "class" | "subject" | "lesson" | "exam" | "assignment" | "result" | "attendance" | "event" | "announcement" | "alumni" | "resource" | "job"
       txIsolationLevel: never
     }
     model: {
@@ -2144,6 +2216,228 @@ export namespace Prisma {
           }
         }
       }
+      Alumni: {
+        payload: Prisma.$AlumniPayload<ExtArgs>
+        fields: Prisma.AlumniFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AlumniFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AlumniFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>
+          }
+          findFirst: {
+            args: Prisma.AlumniFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AlumniFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>
+          }
+          findMany: {
+            args: Prisma.AlumniFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>[]
+          }
+          create: {
+            args: Prisma.AlumniCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>
+          }
+          createMany: {
+            args: Prisma.AlumniCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AlumniDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>
+          }
+          update: {
+            args: Prisma.AlumniUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>
+          }
+          deleteMany: {
+            args: Prisma.AlumniDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AlumniUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AlumniUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniPayload>
+          }
+          aggregate: {
+            args: Prisma.AlumniAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAlumni>
+          }
+          groupBy: {
+            args: Prisma.AlumniGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AlumniGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.AlumniFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.AlumniAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.AlumniCountArgs<ExtArgs>
+            result: $Utils.Optional<AlumniCountAggregateOutputType> | number
+          }
+        }
+      }
+      Resource: {
+        payload: Prisma.$ResourcePayload<ExtArgs>
+        fields: Prisma.ResourceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResourceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResourceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>
+          }
+          findFirst: {
+            args: Prisma.ResourceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResourceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>
+          }
+          findMany: {
+            args: Prisma.ResourceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>[]
+          }
+          create: {
+            args: Prisma.ResourceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>
+          }
+          createMany: {
+            args: Prisma.ResourceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ResourceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>
+          }
+          update: {
+            args: Prisma.ResourceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>
+          }
+          deleteMany: {
+            args: Prisma.ResourceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResourceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ResourceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResourcePayload>
+          }
+          aggregate: {
+            args: Prisma.ResourceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateResource>
+          }
+          groupBy: {
+            args: Prisma.ResourceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ResourceGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ResourceFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ResourceAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ResourceCountArgs<ExtArgs>
+            result: $Utils.Optional<ResourceCountAggregateOutputType> | number
+          }
+        }
+      }
+      Job: {
+        payload: Prisma.$JobPayload<ExtArgs>
+        fields: Prisma.JobFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JobFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JobFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          findFirst: {
+            args: Prisma.JobFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JobFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          findMany: {
+            args: Prisma.JobFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>[]
+          }
+          create: {
+            args: Prisma.JobCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          createMany: {
+            args: Prisma.JobCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.JobDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          update: {
+            args: Prisma.JobUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          deleteMany: {
+            args: Prisma.JobDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JobUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.JobUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          aggregate: {
+            args: Prisma.JobAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJob>
+          }
+          groupBy: {
+            args: Prisma.JobGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JobGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.JobFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.JobAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.JobCountArgs<ExtArgs>
+            result: $Utils.Optional<JobCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2232,6 +2526,9 @@ export namespace Prisma {
     attendance?: AttendanceOmit
     event?: EventOmit
     announcement?: AnnouncementOmit
+    alumni?: AlumniOmit
+    resource?: ResourceOmit
+    job?: JobOmit
   }
 
   /* Types for Logging */
@@ -20618,6 +20915,2857 @@ export namespace Prisma {
 
 
   /**
+   * Model Alumni
+   */
+
+  export type AggregateAlumni = {
+    _count: AlumniCountAggregateOutputType | null
+    _min: AlumniMinAggregateOutputType | null
+    _max: AlumniMaxAggregateOutputType | null
+  }
+
+  export type AlumniMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    designation: string | null
+    batch: string | null
+    image: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AlumniMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    designation: string | null
+    batch: string | null
+    image: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AlumniCountAggregateOutputType = {
+    id: number
+    name: number
+    designation: number
+    batch: number
+    image: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AlumniMinAggregateInputType = {
+    id?: true
+    name?: true
+    designation?: true
+    batch?: true
+    image?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AlumniMaxAggregateInputType = {
+    id?: true
+    name?: true
+    designation?: true
+    batch?: true
+    image?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AlumniCountAggregateInputType = {
+    id?: true
+    name?: true
+    designation?: true
+    batch?: true
+    image?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AlumniAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Alumni to aggregate.
+     */
+    where?: AlumniWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Alumni to fetch.
+     */
+    orderBy?: AlumniOrderByWithRelationInput | AlumniOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AlumniWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Alumni from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Alumni.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Alumni
+    **/
+    _count?: true | AlumniCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AlumniMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AlumniMaxAggregateInputType
+  }
+
+  export type GetAlumniAggregateType<T extends AlumniAggregateArgs> = {
+        [P in keyof T & keyof AggregateAlumni]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAlumni[P]>
+      : GetScalarType<T[P], AggregateAlumni[P]>
+  }
+
+
+
+
+  export type AlumniGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AlumniWhereInput
+    orderBy?: AlumniOrderByWithAggregationInput | AlumniOrderByWithAggregationInput[]
+    by: AlumniScalarFieldEnum[] | AlumniScalarFieldEnum
+    having?: AlumniScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AlumniCountAggregateInputType | true
+    _min?: AlumniMinAggregateInputType
+    _max?: AlumniMaxAggregateInputType
+  }
+
+  export type AlumniGroupByOutputType = {
+    id: string
+    name: string
+    designation: string
+    batch: string
+    image: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AlumniCountAggregateOutputType | null
+    _min: AlumniMinAggregateOutputType | null
+    _max: AlumniMaxAggregateOutputType | null
+  }
+
+  type GetAlumniGroupByPayload<T extends AlumniGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AlumniGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AlumniGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AlumniGroupByOutputType[P]>
+            : GetScalarType<T[P], AlumniGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AlumniSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    designation?: boolean
+    batch?: boolean
+    image?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["alumni"]>
+
+
+
+  export type AlumniSelectScalar = {
+    id?: boolean
+    name?: boolean
+    designation?: boolean
+    batch?: boolean
+    image?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AlumniOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "designation" | "batch" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["alumni"]>
+
+  export type $AlumniPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Alumni"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      designation: string
+      batch: string
+      image: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["alumni"]>
+    composites: {}
+  }
+
+  type AlumniGetPayload<S extends boolean | null | undefined | AlumniDefaultArgs> = $Result.GetResult<Prisma.$AlumniPayload, S>
+
+  type AlumniCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AlumniFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AlumniCountAggregateInputType | true
+    }
+
+  export interface AlumniDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Alumni'], meta: { name: 'Alumni' } }
+    /**
+     * Find zero or one Alumni that matches the filter.
+     * @param {AlumniFindUniqueArgs} args - Arguments to find a Alumni
+     * @example
+     * // Get one Alumni
+     * const alumni = await prisma.alumni.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AlumniFindUniqueArgs>(args: SelectSubset<T, AlumniFindUniqueArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Alumni that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AlumniFindUniqueOrThrowArgs} args - Arguments to find a Alumni
+     * @example
+     * // Get one Alumni
+     * const alumni = await prisma.alumni.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AlumniFindUniqueOrThrowArgs>(args: SelectSubset<T, AlumniFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Alumni that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniFindFirstArgs} args - Arguments to find a Alumni
+     * @example
+     * // Get one Alumni
+     * const alumni = await prisma.alumni.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AlumniFindFirstArgs>(args?: SelectSubset<T, AlumniFindFirstArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Alumni that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniFindFirstOrThrowArgs} args - Arguments to find a Alumni
+     * @example
+     * // Get one Alumni
+     * const alumni = await prisma.alumni.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AlumniFindFirstOrThrowArgs>(args?: SelectSubset<T, AlumniFindFirstOrThrowArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Alumni that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Alumni
+     * const alumni = await prisma.alumni.findMany()
+     * 
+     * // Get first 10 Alumni
+     * const alumni = await prisma.alumni.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const alumniWithIdOnly = await prisma.alumni.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AlumniFindManyArgs>(args?: SelectSubset<T, AlumniFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Alumni.
+     * @param {AlumniCreateArgs} args - Arguments to create a Alumni.
+     * @example
+     * // Create one Alumni
+     * const Alumni = await prisma.alumni.create({
+     *   data: {
+     *     // ... data to create a Alumni
+     *   }
+     * })
+     * 
+     */
+    create<T extends AlumniCreateArgs>(args: SelectSubset<T, AlumniCreateArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Alumni.
+     * @param {AlumniCreateManyArgs} args - Arguments to create many Alumni.
+     * @example
+     * // Create many Alumni
+     * const alumni = await prisma.alumni.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AlumniCreateManyArgs>(args?: SelectSubset<T, AlumniCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Alumni.
+     * @param {AlumniDeleteArgs} args - Arguments to delete one Alumni.
+     * @example
+     * // Delete one Alumni
+     * const Alumni = await prisma.alumni.delete({
+     *   where: {
+     *     // ... filter to delete one Alumni
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AlumniDeleteArgs>(args: SelectSubset<T, AlumniDeleteArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Alumni.
+     * @param {AlumniUpdateArgs} args - Arguments to update one Alumni.
+     * @example
+     * // Update one Alumni
+     * const alumni = await prisma.alumni.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AlumniUpdateArgs>(args: SelectSubset<T, AlumniUpdateArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Alumni.
+     * @param {AlumniDeleteManyArgs} args - Arguments to filter Alumni to delete.
+     * @example
+     * // Delete a few Alumni
+     * const { count } = await prisma.alumni.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AlumniDeleteManyArgs>(args?: SelectSubset<T, AlumniDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Alumni.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Alumni
+     * const alumni = await prisma.alumni.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AlumniUpdateManyArgs>(args: SelectSubset<T, AlumniUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Alumni.
+     * @param {AlumniUpsertArgs} args - Arguments to update or create a Alumni.
+     * @example
+     * // Update or create a Alumni
+     * const alumni = await prisma.alumni.upsert({
+     *   create: {
+     *     // ... data to create a Alumni
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Alumni we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AlumniUpsertArgs>(args: SelectSubset<T, AlumniUpsertArgs<ExtArgs>>): Prisma__AlumniClient<$Result.GetResult<Prisma.$AlumniPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Alumni that matches the filter.
+     * @param {AlumniFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const alumni = await prisma.alumni.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: AlumniFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Alumni.
+     * @param {AlumniAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const alumni = await prisma.alumni.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: AlumniAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Alumni.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniCountArgs} args - Arguments to filter Alumni to count.
+     * @example
+     * // Count the number of Alumni
+     * const count = await prisma.alumni.count({
+     *   where: {
+     *     // ... the filter for the Alumni we want to count
+     *   }
+     * })
+    **/
+    count<T extends AlumniCountArgs>(
+      args?: Subset<T, AlumniCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AlumniCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Alumni.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AlumniAggregateArgs>(args: Subset<T, AlumniAggregateArgs>): Prisma.PrismaPromise<GetAlumniAggregateType<T>>
+
+    /**
+     * Group by Alumni.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AlumniGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AlumniGroupByArgs['orderBy'] }
+        : { orderBy?: AlumniGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AlumniGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAlumniGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Alumni model
+   */
+  readonly fields: AlumniFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Alumni.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AlumniClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Alumni model
+   */ 
+  interface AlumniFieldRefs {
+    readonly id: FieldRef<"Alumni", 'String'>
+    readonly name: FieldRef<"Alumni", 'String'>
+    readonly designation: FieldRef<"Alumni", 'String'>
+    readonly batch: FieldRef<"Alumni", 'String'>
+    readonly image: FieldRef<"Alumni", 'String'>
+    readonly createdAt: FieldRef<"Alumni", 'DateTime'>
+    readonly updatedAt: FieldRef<"Alumni", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Alumni findUnique
+   */
+  export type AlumniFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * Filter, which Alumni to fetch.
+     */
+    where: AlumniWhereUniqueInput
+  }
+
+  /**
+   * Alumni findUniqueOrThrow
+   */
+  export type AlumniFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * Filter, which Alumni to fetch.
+     */
+    where: AlumniWhereUniqueInput
+  }
+
+  /**
+   * Alumni findFirst
+   */
+  export type AlumniFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * Filter, which Alumni to fetch.
+     */
+    where?: AlumniWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Alumni to fetch.
+     */
+    orderBy?: AlumniOrderByWithRelationInput | AlumniOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Alumni.
+     */
+    cursor?: AlumniWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Alumni from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Alumni.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Alumni.
+     */
+    distinct?: AlumniScalarFieldEnum | AlumniScalarFieldEnum[]
+  }
+
+  /**
+   * Alumni findFirstOrThrow
+   */
+  export type AlumniFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * Filter, which Alumni to fetch.
+     */
+    where?: AlumniWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Alumni to fetch.
+     */
+    orderBy?: AlumniOrderByWithRelationInput | AlumniOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Alumni.
+     */
+    cursor?: AlumniWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Alumni from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Alumni.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Alumni.
+     */
+    distinct?: AlumniScalarFieldEnum | AlumniScalarFieldEnum[]
+  }
+
+  /**
+   * Alumni findMany
+   */
+  export type AlumniFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * Filter, which Alumni to fetch.
+     */
+    where?: AlumniWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Alumni to fetch.
+     */
+    orderBy?: AlumniOrderByWithRelationInput | AlumniOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Alumni.
+     */
+    cursor?: AlumniWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Alumni from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Alumni.
+     */
+    skip?: number
+    distinct?: AlumniScalarFieldEnum | AlumniScalarFieldEnum[]
+  }
+
+  /**
+   * Alumni create
+   */
+  export type AlumniCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Alumni.
+     */
+    data: XOR<AlumniCreateInput, AlumniUncheckedCreateInput>
+  }
+
+  /**
+   * Alumni createMany
+   */
+  export type AlumniCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Alumni.
+     */
+    data: AlumniCreateManyInput | AlumniCreateManyInput[]
+  }
+
+  /**
+   * Alumni update
+   */
+  export type AlumniUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Alumni.
+     */
+    data: XOR<AlumniUpdateInput, AlumniUncheckedUpdateInput>
+    /**
+     * Choose, which Alumni to update.
+     */
+    where: AlumniWhereUniqueInput
+  }
+
+  /**
+   * Alumni updateMany
+   */
+  export type AlumniUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Alumni.
+     */
+    data: XOR<AlumniUpdateManyMutationInput, AlumniUncheckedUpdateManyInput>
+    /**
+     * Filter which Alumni to update
+     */
+    where?: AlumniWhereInput
+    /**
+     * Limit how many Alumni to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Alumni upsert
+   */
+  export type AlumniUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Alumni to update in case it exists.
+     */
+    where: AlumniWhereUniqueInput
+    /**
+     * In case the Alumni found by the `where` argument doesn't exist, create a new Alumni with this data.
+     */
+    create: XOR<AlumniCreateInput, AlumniUncheckedCreateInput>
+    /**
+     * In case the Alumni was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AlumniUpdateInput, AlumniUncheckedUpdateInput>
+  }
+
+  /**
+   * Alumni delete
+   */
+  export type AlumniDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+    /**
+     * Filter which Alumni to delete.
+     */
+    where: AlumniWhereUniqueInput
+  }
+
+  /**
+   * Alumni deleteMany
+   */
+  export type AlumniDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Alumni to delete
+     */
+    where?: AlumniWhereInput
+    /**
+     * Limit how many Alumni to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Alumni findRaw
+   */
+  export type AlumniFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Alumni aggregateRaw
+   */
+  export type AlumniAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Alumni without action
+   */
+  export type AlumniDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Alumni
+     */
+    select?: AlumniSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Alumni
+     */
+    omit?: AlumniOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Resource
+   */
+
+  export type AggregateResource = {
+    _count: ResourceCountAggregateOutputType | null
+    _min: ResourceMinAggregateOutputType | null
+    _max: ResourceMaxAggregateOutputType | null
+  }
+
+  export type ResourceMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    file: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ResourceMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    file: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ResourceCountAggregateOutputType = {
+    id: number
+    title: number
+    file: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ResourceMinAggregateInputType = {
+    id?: true
+    title?: true
+    file?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ResourceMaxAggregateInputType = {
+    id?: true
+    title?: true
+    file?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ResourceCountAggregateInputType = {
+    id?: true
+    title?: true
+    file?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ResourceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Resource to aggregate.
+     */
+    where?: ResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Resources to fetch.
+     */
+    orderBy?: ResourceOrderByWithRelationInput | ResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Resources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Resources.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Resources
+    **/
+    _count?: true | ResourceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResourceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResourceMaxAggregateInputType
+  }
+
+  export type GetResourceAggregateType<T extends ResourceAggregateArgs> = {
+        [P in keyof T & keyof AggregateResource]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResource[P]>
+      : GetScalarType<T[P], AggregateResource[P]>
+  }
+
+
+
+
+  export type ResourceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceWhereInput
+    orderBy?: ResourceOrderByWithAggregationInput | ResourceOrderByWithAggregationInput[]
+    by: ResourceScalarFieldEnum[] | ResourceScalarFieldEnum
+    having?: ResourceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResourceCountAggregateInputType | true
+    _min?: ResourceMinAggregateInputType
+    _max?: ResourceMaxAggregateInputType
+  }
+
+  export type ResourceGroupByOutputType = {
+    id: string
+    title: string
+    file: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ResourceCountAggregateOutputType | null
+    _min: ResourceMinAggregateOutputType | null
+    _max: ResourceMaxAggregateOutputType | null
+  }
+
+  type GetResourceGroupByPayload<T extends ResourceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResourceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResourceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResourceGroupByOutputType[P]>
+            : GetScalarType<T[P], ResourceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResourceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    file?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["resource"]>
+
+
+
+  export type ResourceSelectScalar = {
+    id?: boolean
+    title?: boolean
+    file?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ResourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "file" | "createdAt" | "updatedAt", ExtArgs["result"]["resource"]>
+
+  export type $ResourcePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Resource"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      file: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["resource"]>
+    composites: {}
+  }
+
+  type ResourceGetPayload<S extends boolean | null | undefined | ResourceDefaultArgs> = $Result.GetResult<Prisma.$ResourcePayload, S>
+
+  type ResourceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ResourceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ResourceCountAggregateInputType | true
+    }
+
+  export interface ResourceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Resource'], meta: { name: 'Resource' } }
+    /**
+     * Find zero or one Resource that matches the filter.
+     * @param {ResourceFindUniqueArgs} args - Arguments to find a Resource
+     * @example
+     * // Get one Resource
+     * const resource = await prisma.resource.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ResourceFindUniqueArgs>(args: SelectSubset<T, ResourceFindUniqueArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Resource that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ResourceFindUniqueOrThrowArgs} args - Arguments to find a Resource
+     * @example
+     * // Get one Resource
+     * const resource = await prisma.resource.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ResourceFindUniqueOrThrowArgs>(args: SelectSubset<T, ResourceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Resource that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceFindFirstArgs} args - Arguments to find a Resource
+     * @example
+     * // Get one Resource
+     * const resource = await prisma.resource.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ResourceFindFirstArgs>(args?: SelectSubset<T, ResourceFindFirstArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Resource that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceFindFirstOrThrowArgs} args - Arguments to find a Resource
+     * @example
+     * // Get one Resource
+     * const resource = await prisma.resource.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ResourceFindFirstOrThrowArgs>(args?: SelectSubset<T, ResourceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Resources that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Resources
+     * const resources = await prisma.resource.findMany()
+     * 
+     * // Get first 10 Resources
+     * const resources = await prisma.resource.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const resourceWithIdOnly = await prisma.resource.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ResourceFindManyArgs>(args?: SelectSubset<T, ResourceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Resource.
+     * @param {ResourceCreateArgs} args - Arguments to create a Resource.
+     * @example
+     * // Create one Resource
+     * const Resource = await prisma.resource.create({
+     *   data: {
+     *     // ... data to create a Resource
+     *   }
+     * })
+     * 
+     */
+    create<T extends ResourceCreateArgs>(args: SelectSubset<T, ResourceCreateArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Resources.
+     * @param {ResourceCreateManyArgs} args - Arguments to create many Resources.
+     * @example
+     * // Create many Resources
+     * const resource = await prisma.resource.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ResourceCreateManyArgs>(args?: SelectSubset<T, ResourceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Resource.
+     * @param {ResourceDeleteArgs} args - Arguments to delete one Resource.
+     * @example
+     * // Delete one Resource
+     * const Resource = await prisma.resource.delete({
+     *   where: {
+     *     // ... filter to delete one Resource
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ResourceDeleteArgs>(args: SelectSubset<T, ResourceDeleteArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Resource.
+     * @param {ResourceUpdateArgs} args - Arguments to update one Resource.
+     * @example
+     * // Update one Resource
+     * const resource = await prisma.resource.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ResourceUpdateArgs>(args: SelectSubset<T, ResourceUpdateArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Resources.
+     * @param {ResourceDeleteManyArgs} args - Arguments to filter Resources to delete.
+     * @example
+     * // Delete a few Resources
+     * const { count } = await prisma.resource.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ResourceDeleteManyArgs>(args?: SelectSubset<T, ResourceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Resources.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Resources
+     * const resource = await prisma.resource.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ResourceUpdateManyArgs>(args: SelectSubset<T, ResourceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Resource.
+     * @param {ResourceUpsertArgs} args - Arguments to update or create a Resource.
+     * @example
+     * // Update or create a Resource
+     * const resource = await prisma.resource.upsert({
+     *   create: {
+     *     // ... data to create a Resource
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Resource we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ResourceUpsertArgs>(args: SelectSubset<T, ResourceUpsertArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Resources that matches the filter.
+     * @param {ResourceFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const resource = await prisma.resource.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ResourceFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Resource.
+     * @param {ResourceAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const resource = await prisma.resource.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ResourceAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Resources.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceCountArgs} args - Arguments to filter Resources to count.
+     * @example
+     * // Count the number of Resources
+     * const count = await prisma.resource.count({
+     *   where: {
+     *     // ... the filter for the Resources we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResourceCountArgs>(
+      args?: Subset<T, ResourceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResourceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Resource.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResourceAggregateArgs>(args: Subset<T, ResourceAggregateArgs>): Prisma.PrismaPromise<GetResourceAggregateType<T>>
+
+    /**
+     * Group by Resource.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResourceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResourceGroupByArgs['orderBy'] }
+        : { orderBy?: ResourceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResourceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResourceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Resource model
+   */
+  readonly fields: ResourceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Resource.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResourceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Resource model
+   */ 
+  interface ResourceFieldRefs {
+    readonly id: FieldRef<"Resource", 'String'>
+    readonly title: FieldRef<"Resource", 'String'>
+    readonly file: FieldRef<"Resource", 'String'>
+    readonly createdAt: FieldRef<"Resource", 'DateTime'>
+    readonly updatedAt: FieldRef<"Resource", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Resource findUnique
+   */
+  export type ResourceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which Resource to fetch.
+     */
+    where: ResourceWhereUniqueInput
+  }
+
+  /**
+   * Resource findUniqueOrThrow
+   */
+  export type ResourceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which Resource to fetch.
+     */
+    where: ResourceWhereUniqueInput
+  }
+
+  /**
+   * Resource findFirst
+   */
+  export type ResourceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which Resource to fetch.
+     */
+    where?: ResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Resources to fetch.
+     */
+    orderBy?: ResourceOrderByWithRelationInput | ResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Resources.
+     */
+    cursor?: ResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Resources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Resources.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Resources.
+     */
+    distinct?: ResourceScalarFieldEnum | ResourceScalarFieldEnum[]
+  }
+
+  /**
+   * Resource findFirstOrThrow
+   */
+  export type ResourceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which Resource to fetch.
+     */
+    where?: ResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Resources to fetch.
+     */
+    orderBy?: ResourceOrderByWithRelationInput | ResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Resources.
+     */
+    cursor?: ResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Resources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Resources.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Resources.
+     */
+    distinct?: ResourceScalarFieldEnum | ResourceScalarFieldEnum[]
+  }
+
+  /**
+   * Resource findMany
+   */
+  export type ResourceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which Resources to fetch.
+     */
+    where?: ResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Resources to fetch.
+     */
+    orderBy?: ResourceOrderByWithRelationInput | ResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Resources.
+     */
+    cursor?: ResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Resources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Resources.
+     */
+    skip?: number
+    distinct?: ResourceScalarFieldEnum | ResourceScalarFieldEnum[]
+  }
+
+  /**
+   * Resource create
+   */
+  export type ResourceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Resource.
+     */
+    data: XOR<ResourceCreateInput, ResourceUncheckedCreateInput>
+  }
+
+  /**
+   * Resource createMany
+   */
+  export type ResourceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Resources.
+     */
+    data: ResourceCreateManyInput | ResourceCreateManyInput[]
+  }
+
+  /**
+   * Resource update
+   */
+  export type ResourceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Resource.
+     */
+    data: XOR<ResourceUpdateInput, ResourceUncheckedUpdateInput>
+    /**
+     * Choose, which Resource to update.
+     */
+    where: ResourceWhereUniqueInput
+  }
+
+  /**
+   * Resource updateMany
+   */
+  export type ResourceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Resources.
+     */
+    data: XOR<ResourceUpdateManyMutationInput, ResourceUncheckedUpdateManyInput>
+    /**
+     * Filter which Resources to update
+     */
+    where?: ResourceWhereInput
+    /**
+     * Limit how many Resources to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Resource upsert
+   */
+  export type ResourceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Resource to update in case it exists.
+     */
+    where: ResourceWhereUniqueInput
+    /**
+     * In case the Resource found by the `where` argument doesn't exist, create a new Resource with this data.
+     */
+    create: XOR<ResourceCreateInput, ResourceUncheckedCreateInput>
+    /**
+     * In case the Resource was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResourceUpdateInput, ResourceUncheckedUpdateInput>
+  }
+
+  /**
+   * Resource delete
+   */
+  export type ResourceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Filter which Resource to delete.
+     */
+    where: ResourceWhereUniqueInput
+  }
+
+  /**
+   * Resource deleteMany
+   */
+  export type ResourceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Resources to delete
+     */
+    where?: ResourceWhereInput
+    /**
+     * Limit how many Resources to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Resource findRaw
+   */
+  export type ResourceFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Resource aggregateRaw
+   */
+  export type ResourceAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Resource without action
+   */
+  export type ResourceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Job
+   */
+
+  export type AggregateJob = {
+    _count: JobCountAggregateOutputType | null
+    _min: JobMinAggregateOutputType | null
+    _max: JobMaxAggregateOutputType | null
+  }
+
+  export type JobMinAggregateOutputType = {
+    id: string | null
+    position: string | null
+    branch: $Enums.BranchType | null
+    jobType: $Enums.JobType | null
+    experience: string | null
+    deadline: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JobMaxAggregateOutputType = {
+    id: string | null
+    position: string | null
+    branch: $Enums.BranchType | null
+    jobType: $Enums.JobType | null
+    experience: string | null
+    deadline: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JobCountAggregateOutputType = {
+    id: number
+    position: number
+    branch: number
+    jobType: number
+    experience: number
+    deadline: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type JobMinAggregateInputType = {
+    id?: true
+    position?: true
+    branch?: true
+    jobType?: true
+    experience?: true
+    deadline?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JobMaxAggregateInputType = {
+    id?: true
+    position?: true
+    branch?: true
+    jobType?: true
+    experience?: true
+    deadline?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JobCountAggregateInputType = {
+    id?: true
+    position?: true
+    branch?: true
+    jobType?: true
+    experience?: true
+    deadline?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type JobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Job to aggregate.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Jobs
+    **/
+    _count?: true | JobCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JobMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JobMaxAggregateInputType
+  }
+
+  export type GetJobAggregateType<T extends JobAggregateArgs> = {
+        [P in keyof T & keyof AggregateJob]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJob[P]>
+      : GetScalarType<T[P], AggregateJob[P]>
+  }
+
+
+
+
+  export type JobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobWhereInput
+    orderBy?: JobOrderByWithAggregationInput | JobOrderByWithAggregationInput[]
+    by: JobScalarFieldEnum[] | JobScalarFieldEnum
+    having?: JobScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JobCountAggregateInputType | true
+    _min?: JobMinAggregateInputType
+    _max?: JobMaxAggregateInputType
+  }
+
+  export type JobGroupByOutputType = {
+    id: string
+    position: string
+    branch: $Enums.BranchType
+    jobType: $Enums.JobType
+    experience: string
+    deadline: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: JobCountAggregateOutputType | null
+    _min: JobMinAggregateOutputType | null
+    _max: JobMaxAggregateOutputType | null
+  }
+
+  type GetJobGroupByPayload<T extends JobGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JobGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JobGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JobGroupByOutputType[P]>
+            : GetScalarType<T[P], JobGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    position?: boolean
+    branch?: boolean
+    jobType?: boolean
+    experience?: boolean
+    deadline?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["job"]>
+
+
+
+  export type JobSelectScalar = {
+    id?: boolean
+    position?: boolean
+    branch?: boolean
+    jobType?: boolean
+    experience?: boolean
+    deadline?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "position" | "branch" | "jobType" | "experience" | "deadline" | "createdAt" | "updatedAt", ExtArgs["result"]["job"]>
+
+  export type $JobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Job"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      position: string
+      branch: $Enums.BranchType
+      jobType: $Enums.JobType
+      experience: string
+      deadline: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["job"]>
+    composites: {}
+  }
+
+  type JobGetPayload<S extends boolean | null | undefined | JobDefaultArgs> = $Result.GetResult<Prisma.$JobPayload, S>
+
+  type JobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JobFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JobCountAggregateInputType | true
+    }
+
+  export interface JobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Job'], meta: { name: 'Job' } }
+    /**
+     * Find zero or one Job that matches the filter.
+     * @param {JobFindUniqueArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JobFindUniqueArgs>(args: SelectSubset<T, JobFindUniqueArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Job that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JobFindUniqueOrThrowArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JobFindUniqueOrThrowArgs>(args: SelectSubset<T, JobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Job that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobFindFirstArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JobFindFirstArgs>(args?: SelectSubset<T, JobFindFirstArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Job that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobFindFirstOrThrowArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JobFindFirstOrThrowArgs>(args?: SelectSubset<T, JobFindFirstOrThrowArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Jobs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Jobs
+     * const jobs = await prisma.job.findMany()
+     * 
+     * // Get first 10 Jobs
+     * const jobs = await prisma.job.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jobWithIdOnly = await prisma.job.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JobFindManyArgs>(args?: SelectSubset<T, JobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Job.
+     * @param {JobCreateArgs} args - Arguments to create a Job.
+     * @example
+     * // Create one Job
+     * const Job = await prisma.job.create({
+     *   data: {
+     *     // ... data to create a Job
+     *   }
+     * })
+     * 
+     */
+    create<T extends JobCreateArgs>(args: SelectSubset<T, JobCreateArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Jobs.
+     * @param {JobCreateManyArgs} args - Arguments to create many Jobs.
+     * @example
+     * // Create many Jobs
+     * const job = await prisma.job.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JobCreateManyArgs>(args?: SelectSubset<T, JobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Job.
+     * @param {JobDeleteArgs} args - Arguments to delete one Job.
+     * @example
+     * // Delete one Job
+     * const Job = await prisma.job.delete({
+     *   where: {
+     *     // ... filter to delete one Job
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JobDeleteArgs>(args: SelectSubset<T, JobDeleteArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Job.
+     * @param {JobUpdateArgs} args - Arguments to update one Job.
+     * @example
+     * // Update one Job
+     * const job = await prisma.job.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JobUpdateArgs>(args: SelectSubset<T, JobUpdateArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Jobs.
+     * @param {JobDeleteManyArgs} args - Arguments to filter Jobs to delete.
+     * @example
+     * // Delete a few Jobs
+     * const { count } = await prisma.job.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JobDeleteManyArgs>(args?: SelectSubset<T, JobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Jobs
+     * const job = await prisma.job.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JobUpdateManyArgs>(args: SelectSubset<T, JobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Job.
+     * @param {JobUpsertArgs} args - Arguments to update or create a Job.
+     * @example
+     * // Update or create a Job
+     * const job = await prisma.job.upsert({
+     *   create: {
+     *     // ... data to create a Job
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Job we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JobUpsertArgs>(args: SelectSubset<T, JobUpsertArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Jobs that matches the filter.
+     * @param {JobFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const job = await prisma.job.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: JobFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Job.
+     * @param {JobAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const job = await prisma.job.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: JobAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Jobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobCountArgs} args - Arguments to filter Jobs to count.
+     * @example
+     * // Count the number of Jobs
+     * const count = await prisma.job.count({
+     *   where: {
+     *     // ... the filter for the Jobs we want to count
+     *   }
+     * })
+    **/
+    count<T extends JobCountArgs>(
+      args?: Subset<T, JobCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JobCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Job.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JobAggregateArgs>(args: Subset<T, JobAggregateArgs>): Prisma.PrismaPromise<GetJobAggregateType<T>>
+
+    /**
+     * Group by Job.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JobGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JobGroupByArgs['orderBy'] }
+        : { orderBy?: JobGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Job model
+   */
+  readonly fields: JobFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Job.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Job model
+   */ 
+  interface JobFieldRefs {
+    readonly id: FieldRef<"Job", 'String'>
+    readonly position: FieldRef<"Job", 'String'>
+    readonly branch: FieldRef<"Job", 'BranchType'>
+    readonly jobType: FieldRef<"Job", 'JobType'>
+    readonly experience: FieldRef<"Job", 'String'>
+    readonly deadline: FieldRef<"Job", 'DateTime'>
+    readonly createdAt: FieldRef<"Job", 'DateTime'>
+    readonly updatedAt: FieldRef<"Job", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Job findUnique
+   */
+  export type JobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job findUniqueOrThrow
+   */
+  export type JobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job findFirst
+   */
+  export type JobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jobs.
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jobs.
+     */
+    distinct?: JobScalarFieldEnum | JobScalarFieldEnum[]
+  }
+
+  /**
+   * Job findFirstOrThrow
+   */
+  export type JobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jobs.
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jobs.
+     */
+    distinct?: JobScalarFieldEnum | JobScalarFieldEnum[]
+  }
+
+  /**
+   * Job findMany
+   */
+  export type JobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Jobs to fetch.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Jobs.
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    distinct?: JobScalarFieldEnum | JobScalarFieldEnum[]
+  }
+
+  /**
+   * Job create
+   */
+  export type JobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Job.
+     */
+    data: XOR<JobCreateInput, JobUncheckedCreateInput>
+  }
+
+  /**
+   * Job createMany
+   */
+  export type JobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Jobs.
+     */
+    data: JobCreateManyInput | JobCreateManyInput[]
+  }
+
+  /**
+   * Job update
+   */
+  export type JobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Job.
+     */
+    data: XOR<JobUpdateInput, JobUncheckedUpdateInput>
+    /**
+     * Choose, which Job to update.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job updateMany
+   */
+  export type JobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Jobs.
+     */
+    data: XOR<JobUpdateManyMutationInput, JobUncheckedUpdateManyInput>
+    /**
+     * Filter which Jobs to update
+     */
+    where?: JobWhereInput
+    /**
+     * Limit how many Jobs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Job upsert
+   */
+  export type JobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Job to update in case it exists.
+     */
+    where: JobWhereUniqueInput
+    /**
+     * In case the Job found by the `where` argument doesn't exist, create a new Job with this data.
+     */
+    create: XOR<JobCreateInput, JobUncheckedCreateInput>
+    /**
+     * In case the Job was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JobUpdateInput, JobUncheckedUpdateInput>
+  }
+
+  /**
+   * Job delete
+   */
+  export type JobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter which Job to delete.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job deleteMany
+   */
+  export type JobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Jobs to delete
+     */
+    where?: JobWhereInput
+    /**
+     * Limit how many Jobs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Job findRaw
+   */
+  export type JobFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Job aggregateRaw
+   */
+  export type JobAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Job without action
+   */
+  export type JobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -20850,6 +23998,44 @@ export namespace Prisma {
   export type AnnouncementScalarFieldEnum = (typeof AnnouncementScalarFieldEnum)[keyof typeof AnnouncementScalarFieldEnum]
 
 
+  export const AlumniScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    designation: 'designation',
+    batch: 'batch',
+    image: 'image',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AlumniScalarFieldEnum = (typeof AlumniScalarFieldEnum)[keyof typeof AlumniScalarFieldEnum]
+
+
+  export const ResourceScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    file: 'file',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ResourceScalarFieldEnum = (typeof ResourceScalarFieldEnum)[keyof typeof ResourceScalarFieldEnum]
+
+
+  export const JobScalarFieldEnum: {
+    id: 'id',
+    position: 'position',
+    branch: 'branch',
+    jobType: 'jobType',
+    experience: 'experience',
+    deadline: 'deadline',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -20945,6 +24131,34 @@ export namespace Prisma {
    * Reference to a field of type 'Day[]'
    */
   export type ListEnumDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Day[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'BranchType'
+   */
+  export type EnumBranchTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BranchType'>
+    
+
+
+  /**
+   * Reference to a field of type 'BranchType[]'
+   */
+  export type ListEnumBranchTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BranchType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'JobType'
+   */
+  export type EnumJobTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobType'>
+    
+
+
+  /**
+   * Reference to a field of type 'JobType[]'
+   */
+  export type ListEnumJobTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobType[]'>
     
 
 
@@ -22197,6 +25411,187 @@ export namespace Prisma {
     classId?: StringNullableWithAggregatesFilter<"Announcement"> | string | null
   }
 
+  export type AlumniWhereInput = {
+    AND?: AlumniWhereInput | AlumniWhereInput[]
+    OR?: AlumniWhereInput[]
+    NOT?: AlumniWhereInput | AlumniWhereInput[]
+    id?: StringFilter<"Alumni"> | string
+    name?: StringFilter<"Alumni"> | string
+    designation?: StringFilter<"Alumni"> | string
+    batch?: StringFilter<"Alumni"> | string
+    image?: StringFilter<"Alumni"> | string
+    createdAt?: DateTimeFilter<"Alumni"> | Date | string
+    updatedAt?: DateTimeFilter<"Alumni"> | Date | string
+  }
+
+  export type AlumniOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    batch?: SortOrder
+    image?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AlumniWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AlumniWhereInput | AlumniWhereInput[]
+    OR?: AlumniWhereInput[]
+    NOT?: AlumniWhereInput | AlumniWhereInput[]
+    name?: StringFilter<"Alumni"> | string
+    designation?: StringFilter<"Alumni"> | string
+    batch?: StringFilter<"Alumni"> | string
+    image?: StringFilter<"Alumni"> | string
+    createdAt?: DateTimeFilter<"Alumni"> | Date | string
+    updatedAt?: DateTimeFilter<"Alumni"> | Date | string
+  }, "id">
+
+  export type AlumniOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    batch?: SortOrder
+    image?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AlumniCountOrderByAggregateInput
+    _max?: AlumniMaxOrderByAggregateInput
+    _min?: AlumniMinOrderByAggregateInput
+  }
+
+  export type AlumniScalarWhereWithAggregatesInput = {
+    AND?: AlumniScalarWhereWithAggregatesInput | AlumniScalarWhereWithAggregatesInput[]
+    OR?: AlumniScalarWhereWithAggregatesInput[]
+    NOT?: AlumniScalarWhereWithAggregatesInput | AlumniScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Alumni"> | string
+    name?: StringWithAggregatesFilter<"Alumni"> | string
+    designation?: StringWithAggregatesFilter<"Alumni"> | string
+    batch?: StringWithAggregatesFilter<"Alumni"> | string
+    image?: StringWithAggregatesFilter<"Alumni"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Alumni"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Alumni"> | Date | string
+  }
+
+  export type ResourceWhereInput = {
+    AND?: ResourceWhereInput | ResourceWhereInput[]
+    OR?: ResourceWhereInput[]
+    NOT?: ResourceWhereInput | ResourceWhereInput[]
+    id?: StringFilter<"Resource"> | string
+    title?: StringFilter<"Resource"> | string
+    file?: StringFilter<"Resource"> | string
+    createdAt?: DateTimeFilter<"Resource"> | Date | string
+    updatedAt?: DateTimeFilter<"Resource"> | Date | string
+  }
+
+  export type ResourceOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    file?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResourceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ResourceWhereInput | ResourceWhereInput[]
+    OR?: ResourceWhereInput[]
+    NOT?: ResourceWhereInput | ResourceWhereInput[]
+    title?: StringFilter<"Resource"> | string
+    file?: StringFilter<"Resource"> | string
+    createdAt?: DateTimeFilter<"Resource"> | Date | string
+    updatedAt?: DateTimeFilter<"Resource"> | Date | string
+  }, "id">
+
+  export type ResourceOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    file?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ResourceCountOrderByAggregateInput
+    _max?: ResourceMaxOrderByAggregateInput
+    _min?: ResourceMinOrderByAggregateInput
+  }
+
+  export type ResourceScalarWhereWithAggregatesInput = {
+    AND?: ResourceScalarWhereWithAggregatesInput | ResourceScalarWhereWithAggregatesInput[]
+    OR?: ResourceScalarWhereWithAggregatesInput[]
+    NOT?: ResourceScalarWhereWithAggregatesInput | ResourceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Resource"> | string
+    title?: StringWithAggregatesFilter<"Resource"> | string
+    file?: StringWithAggregatesFilter<"Resource"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
+  }
+
+  export type JobWhereInput = {
+    AND?: JobWhereInput | JobWhereInput[]
+    OR?: JobWhereInput[]
+    NOT?: JobWhereInput | JobWhereInput[]
+    id?: StringFilter<"Job"> | string
+    position?: StringFilter<"Job"> | string
+    branch?: EnumBranchTypeFilter<"Job"> | $Enums.BranchType
+    jobType?: EnumJobTypeFilter<"Job"> | $Enums.JobType
+    experience?: StringFilter<"Job"> | string
+    deadline?: DateTimeFilter<"Job"> | Date | string
+    createdAt?: DateTimeFilter<"Job"> | Date | string
+    updatedAt?: DateTimeFilter<"Job"> | Date | string
+  }
+
+  export type JobOrderByWithRelationInput = {
+    id?: SortOrder
+    position?: SortOrder
+    branch?: SortOrder
+    jobType?: SortOrder
+    experience?: SortOrder
+    deadline?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JobWhereInput | JobWhereInput[]
+    OR?: JobWhereInput[]
+    NOT?: JobWhereInput | JobWhereInput[]
+    position?: StringFilter<"Job"> | string
+    branch?: EnumBranchTypeFilter<"Job"> | $Enums.BranchType
+    jobType?: EnumJobTypeFilter<"Job"> | $Enums.JobType
+    experience?: StringFilter<"Job"> | string
+    deadline?: DateTimeFilter<"Job"> | Date | string
+    createdAt?: DateTimeFilter<"Job"> | Date | string
+    updatedAt?: DateTimeFilter<"Job"> | Date | string
+  }, "id">
+
+  export type JobOrderByWithAggregationInput = {
+    id?: SortOrder
+    position?: SortOrder
+    branch?: SortOrder
+    jobType?: SortOrder
+    experience?: SortOrder
+    deadline?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: JobCountOrderByAggregateInput
+    _max?: JobMaxOrderByAggregateInput
+    _min?: JobMinOrderByAggregateInput
+  }
+
+  export type JobScalarWhereWithAggregatesInput = {
+    AND?: JobScalarWhereWithAggregatesInput | JobScalarWhereWithAggregatesInput[]
+    OR?: JobScalarWhereWithAggregatesInput[]
+    NOT?: JobScalarWhereWithAggregatesInput | JobScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Job"> | string
+    position?: StringWithAggregatesFilter<"Job"> | string
+    branch?: EnumBranchTypeWithAggregatesFilter<"Job"> | $Enums.BranchType
+    jobType?: EnumJobTypeWithAggregatesFilter<"Job"> | $Enums.JobType
+    experience?: StringWithAggregatesFilter<"Job"> | string
+    deadline?: DateTimeWithAggregatesFilter<"Job"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Job"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Job"> | Date | string
+  }
+
   export type AdminCreateInput = {
     id?: string
     username: string
@@ -23440,6 +26835,197 @@ export namespace Prisma {
     classId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type AlumniCreateInput = {
+    id?: string
+    name: string
+    designation: string
+    batch: string
+    image: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AlumniUncheckedCreateInput = {
+    id?: string
+    name: string
+    designation: string
+    batch: string
+    image: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AlumniUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: StringFieldUpdateOperationsInput | string
+    batch?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AlumniUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: StringFieldUpdateOperationsInput | string
+    batch?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AlumniCreateManyInput = {
+    id?: string
+    name: string
+    designation: string
+    batch: string
+    image: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AlumniUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: StringFieldUpdateOperationsInput | string
+    batch?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AlumniUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: StringFieldUpdateOperationsInput | string
+    batch?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceCreateInput = {
+    id?: string
+    title: string
+    file: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ResourceUncheckedCreateInput = {
+    id?: string
+    title: string
+    file: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ResourceUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    file?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceUncheckedUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    file?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceCreateManyInput = {
+    id?: string
+    title: string
+    file: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ResourceUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    file?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceUncheckedUpdateManyInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    file?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobCreateInput = {
+    id?: string
+    position: string
+    branch: $Enums.BranchType
+    jobType: $Enums.JobType
+    experience: string
+    deadline: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobUncheckedCreateInput = {
+    id?: string
+    position: string
+    branch: $Enums.BranchType
+    jobType: $Enums.JobType
+    experience: string
+    deadline: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobUpdateInput = {
+    position?: StringFieldUpdateOperationsInput | string
+    branch?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
+    experience?: StringFieldUpdateOperationsInput | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobUncheckedUpdateInput = {
+    position?: StringFieldUpdateOperationsInput | string
+    branch?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
+    experience?: StringFieldUpdateOperationsInput | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobCreateManyInput = {
+    id?: string
+    position: string
+    branch: $Enums.BranchType
+    jobType: $Enums.JobType
+    experience: string
+    deadline: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobUpdateManyMutationInput = {
+    position?: StringFieldUpdateOperationsInput | string
+    branch?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
+    experience?: StringFieldUpdateOperationsInput | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobUncheckedUpdateManyInput = {
+    position?: StringFieldUpdateOperationsInput | string
+    branch?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
+    experience?: StringFieldUpdateOperationsInput | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -24435,6 +28021,127 @@ export namespace Prisma {
     description?: SortOrder
     date?: SortOrder
     classId?: SortOrder
+  }
+
+  export type AlumniCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    batch?: SortOrder
+    image?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AlumniMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    batch?: SortOrder
+    image?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AlumniMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    batch?: SortOrder
+    image?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResourceCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    file?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResourceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    file?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResourceMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    file?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumBranchTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BranchType | EnumBranchTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBranchTypeFilter<$PrismaModel> | $Enums.BranchType
+  }
+
+  export type EnumJobTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobType | EnumJobTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobTypeFilter<$PrismaModel> | $Enums.JobType
+  }
+
+  export type JobCountOrderByAggregateInput = {
+    id?: SortOrder
+    position?: SortOrder
+    branch?: SortOrder
+    jobType?: SortOrder
+    experience?: SortOrder
+    deadline?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobMaxOrderByAggregateInput = {
+    id?: SortOrder
+    position?: SortOrder
+    branch?: SortOrder
+    jobType?: SortOrder
+    experience?: SortOrder
+    deadline?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobMinOrderByAggregateInput = {
+    id?: SortOrder
+    position?: SortOrder
+    branch?: SortOrder
+    jobType?: SortOrder
+    experience?: SortOrder
+    deadline?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumBranchTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BranchType | EnumBranchTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBranchTypeWithAggregatesFilter<$PrismaModel> | $Enums.BranchType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBranchTypeFilter<$PrismaModel>
+    _max?: NestedEnumBranchTypeFilter<$PrismaModel>
+  }
+
+  export type EnumJobTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobType | EnumJobTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobTypeWithAggregatesFilter<$PrismaModel> | $Enums.JobType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJobTypeFilter<$PrismaModel>
+    _max?: NestedEnumJobTypeFilter<$PrismaModel>
   }
 
   export type UserCreateNestedOneWithoutAdminInput = {
@@ -25740,6 +29447,14 @@ export namespace Prisma {
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutAnnouncementsInput, ClassUpdateWithoutAnnouncementsInput>, ClassUncheckedUpdateWithoutAnnouncementsInput>
   }
 
+  export type EnumBranchTypeFieldUpdateOperationsInput = {
+    set?: $Enums.BranchType
+  }
+
+  export type EnumJobTypeFieldUpdateOperationsInput = {
+    set?: $Enums.JobType
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -25997,6 +29712,40 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDayFilter<$PrismaModel>
     _max?: NestedEnumDayFilter<$PrismaModel>
+  }
+
+  export type NestedEnumBranchTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BranchType | EnumBranchTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBranchTypeFilter<$PrismaModel> | $Enums.BranchType
+  }
+
+  export type NestedEnumJobTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobType | EnumJobTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobTypeFilter<$PrismaModel> | $Enums.JobType
+  }
+
+  export type NestedEnumBranchTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BranchType | EnumBranchTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BranchType[] | ListEnumBranchTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBranchTypeWithAggregatesFilter<$PrismaModel> | $Enums.BranchType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBranchTypeFilter<$PrismaModel>
+    _max?: NestedEnumBranchTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumJobTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobType | EnumJobTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobType[] | ListEnumJobTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobTypeWithAggregatesFilter<$PrismaModel> | $Enums.JobType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJobTypeFilter<$PrismaModel>
+    _max?: NestedEnumJobTypeFilter<$PrismaModel>
   }
 
   export type UserCreateWithoutAdminInput = {

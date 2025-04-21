@@ -2,13 +2,16 @@
 
 import { revalidatePath } from "next/cache";
 import {
+  AlumniSchema,
   ClassSchema,
   EventSchema,
   ExamSchema,
+  JobSchema,
+  ResourceSchema,
   StudentSchema,
   SubjectSchema,
   TeacherSchema,
-  UserSchema
+  UserSchema,
 } from "./formValidationSchemas";
 import type { Student } from "@/generated/prisma";
 import prisma from "./prisma";
@@ -142,40 +145,36 @@ export const deleteClass = async (
   }
 };
 
-
 export const createTeacher = async (
   currentState: CurrentState,
   data: TeacherSchema
-
 ) => {
   try {
-
     const teacher = await prisma.teacher.create({
       data: {
         username: data.username,
         name: data.name,
         surname: data.surname,
-        email:data.email,
+        email: data.email,
         phone: data.phone,
         address: data.address,
         image: data.image,
         bloodType: data.bloodType,
-        gender:data.gender,
+        gender: data.gender,
         birthday: data.birthday,
         subjects: {
           connect: data.subjects?.map((subjectId: string) => ({
-            id: subjectId
-        }))
+            id: subjectId,
+          })),
         },
         User: {
-          connect:{
-            id: data.id 
-          }
-        }
-      }
-    })
+          connect: {
+            id: data.id,
+          },
+        },
+      },
+    });
 
-  
     // revalidatePath("/list/teachers");
     return { success: true, error: false };
   } catch (err) {
@@ -219,7 +218,6 @@ export const deleteTeacher = async (
 ) => {
   const id = data.get("id") as string;
   try {
-
     await prisma.teacher.delete({
       where: {
         id: id,
@@ -248,7 +246,7 @@ export const createStudent = async (
     if (classItem && classItem.capacity === classItem._count.students) {
       return { success: false, error: true };
     }
-//you need to fix this
+    //you need to fix this
     const user = await prisma.student.create({
       data: {
         username: data.username,
@@ -264,7 +262,7 @@ export const createStudent = async (
         gradeId: data.gradeId,
         classId: data.classId,
         parentName: data.parentName,
-        userId: data.id as string
+        userId: data.id as string,
       },
     });
 
@@ -319,8 +317,6 @@ export const deleteStudent = async (
 ) => {
   const id = data.get("id") as string;
   try {
- 
-
     await prisma.student.delete({
       where: {
         id: id,
@@ -439,7 +435,6 @@ export const deleteExam = async (
   }
 };
 
-
 // EVENTS //
 
 export const createEvent = async (
@@ -457,19 +452,18 @@ export const createEvent = async (
         startTime: data.startTime,
         endTime: data.endTime,
         // class: {
-        //   connect:  data.class?.map((classId) => ({id: classId})) 
+        //   connect:  data.class?.map((classId) => ({id: classId}))
         //   }
         // }
-      }
-    })
+      },
+    });
 
     // revalidatePath("/list/Events");
     return { success: true, error: false };
   } catch (error) {
     return { success: false, error: true };
   }
-}
-
+};
 
 export const updateEvent = async (
   currentState: CurrentState,
@@ -489,19 +483,18 @@ export const updateEvent = async (
         startTime: data.startTime,
         endTime: data.endTime,
         // class: {
-        //   connect:  data.class?.map((classId) => ({id: classId})) 
+        //   connect:  data.class?.map((classId) => ({id: classId}))
         //   }
         // }
-      }
-    })
+      },
+    });
 
     // revalidatePath("/list/Events");
     return { success: true, error: false };
   } catch (error) {
     return { success: false, error: true };
   }
-}
-
+};
 
 export const deleteEvent = async (
   currentState: CurrentState,
@@ -516,11 +509,224 @@ export const deleteEvent = async (
       },
     });
 
-    // revalidatePath("/list/subjects");
+    // revalidatePath("/list/Events");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);
     return { success: false, error: true };
   }
 };
+
+//Resource
+export const createResouce = async (
+  currentState: CurrentState,
+  data: ResourceSchema
+) => {
+  //in future check the permission
+
+  try {
+    await prisma.resource.create({
+      data: {
+        title: data.title,
+        file: data.file,
+      },
+    });
+
+    // revalidatePath("/list/Events");
+    return { success: true, error: false };
+  } catch (error) {
+    return { success: false, error: true };
+  }
+};
+
+export const updateResouce = async (
+  currentState: CurrentState,
+  data: ResourceSchema
+) => {
+  //in future check the permission
+
+  try {
+    await prisma.resource.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        title: data.title,
+        file: data.file,
+      },
+    });
+
+    // revalidatePath("/list/Resource");
+    return { success: true, error: false };
+  } catch (error) {
+    return { success: false, error: true };
+  }
+};
+
+export const deleteResource = async (
+  currentState: CurrentState,
+  data: FormData
+) => {
+  const id = data.get("id") as string;
+
+  try {
+    await prisma.resource.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    // revalidatePath("/list/resources");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+//Alumni
+export const createAlumni = async (
+  currentState: CurrentState,
+  data: AlumniSchema
+) => {
+  //in future check the permission
+
+  try {
+    await prisma.alumni.create({
+      data: {
+        name: data.name,
+        designation: data.designation,
+        batch: data.batch,
+        image: data.image as string,
+      },
+    });
+
+    // revalidatePath("/list/alumni");
+    return { success: true, error: false };
+  } catch (error) {
+    return { success: false, error: true };
+  }
+};
+
+export const updateAlumni = async (
+  currentState: CurrentState,
+  data: AlumniSchema
+) => {
+  //in future check the permission
+
+  try {
+    await prisma.alumni.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        name: data.name,
+        designation: data.designation,
+        batch: data.batch,
+        image: data.image as string,
+      },
+    });
+
+    // revalidatePath("/list/alumni");
+    return { success: true, error: false };
+  } catch (error) {
+    return { success: false, error: true };
+  }
+};
+
+export const deleteAlumni = async (
+  currentState: CurrentState,
+  data: FormData
+) => {
+  const id = data.get("id") as string;
+
+  try {
+    await prisma.alumni.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    // revalidatePath("/list/alumni");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+
+//Job
+export const createJob = async (
+  currentState: CurrentState,
+  data: JobSchema
+) => {
+  //in future check the permission
+
+  try {
+    await prisma.job.create({
+      data: {
+        position: data.position,
+        branch: data.branch,
+        jobType: data.jobType,
+        experience: data.experience,
+        deadline: data.deadline,
+      },
+    });
+
+    // revalidatePath("/list/job");
+    return { success: true, error: false };
+  } catch (error) {
+    return { success: false, error: true };
+  }
+};
+
+export const updateJob = async (
+  currentState: CurrentState,
+  data: JobSchema
+) => {
+  //in future check the permission
+
+  try {
+    await prisma.job.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        position: data.position,
+        branch: data.branch,
+        jobType: data.jobType,
+        experience: data.experience,
+        deadline: data.deadline,
+      },
+    });
+
+    // revalidatePath("/list/job");
+    return { success: true, error: false };
+  } catch (error) {
+    return { success: false, error: true };
+  }
+};
+
+export const deleteJob = async (
+  currentState: CurrentState,
+  data: FormData
+) => {
+  const id = data.get("id") as string;
+
+  try {
+    await prisma.job.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    // revalidatePath("/list/job");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
 
