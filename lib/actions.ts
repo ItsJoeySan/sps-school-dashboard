@@ -218,11 +218,13 @@ export const deleteTeacher = async (
 ) => {
   const id = data.get("id") as string;
   try {
-    await prisma.teacher.delete({
+    console.log(id);
+    await prisma.user.delete({
       where: {
-        id: id,
+      id
       },
-    });
+    }
+  );
 
     // revalidatePath("/list/teachers");
     return { success: true, error: false };
@@ -528,7 +530,7 @@ export const createResouce = async (
     await prisma.resource.create({
       data: {
         title: data.title,
-        file: data.file,
+        file: data.file as string,
       },
     });
 

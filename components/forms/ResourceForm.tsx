@@ -1,13 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, set, Controller } from "react-hook-form";
 import InputField from "../InputField";
 import Image from "next/image";
 import {
   Dispatch,
   SetStateAction,
-  startTransition,
   useEffect,
   useState,
 } from "react";
@@ -16,7 +15,7 @@ import { useActionState } from "react";
 import { createResouce, updateResouce } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { CldUploadWidget } from "next-cloudinary";
+import { CldUploadWidget, CloudinaryUploadWidgetInfo } from "next-cloudinary";
 
 const ResourceForm = ({
   type,
@@ -41,7 +40,8 @@ const ResourceForm = ({
     // }
   });
 
-  const [img, setImg] = useState<any>();
+  const [resourceFile, setResourceFile] = useState<any>();
+
   const [state, formAction] = useActionState(
     type === "create" ? createResouce : updateResouce,
     {
@@ -51,7 +51,9 @@ const ResourceForm = ({
   );
 
   const onSubmit = handleSubmit(async (data: ResourceSchema) => {
-    formAction({ ...data });
+    console.log("I got clicked")
+    console.log('data: ',data);
+    formAction({ ...data, file: resourceFile.secure_url });
   });
 
   const router = useRouter();
@@ -69,10 +71,7 @@ const ResourceForm = ({
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new Resource" : "Update the Resource"}
       </h1>
-      <span className="text-xs text-gray-400 font-medium">
-        Authentication Information
-      </span>
-      <div className="flex justify-between flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4">
         <InputField
           label="Title"
           name="title"
@@ -83,7 +82,8 @@ const ResourceForm = ({
         <CldUploadWidget
           uploadPreset="school"
           onSuccess={(result, { widget }) => {
-            setImg(result.info);
+            console.log('result: ',result);
+            setResourceFile(result.info);
             widget.close();
           }}
         >
@@ -93,18 +93,31 @@ const ResourceForm = ({
                 className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer"
                 onClick={() => open()}
               >
-                <Image
-                  src={img ? img.secure_url : "/upload.png"}
-                  alt=""
-                  width={28}
-                  height={28}
-                />
-                <span>Upload a photo</span>
+                {
+                  resourceFile ? <div>
+                    
+                     <Image src={"/upload.png"} alt="" width={28} height={28} />
+                     <span>{resourceFile.original_filename}.{resourceFile.format}</span>
+                  </div> :
+
+                  <div>
+                 <Image src={"/upload.png"} alt="" width={28} height={28} />
+                <span>Upload a file</span>
+                </div>
+                }
               </div>
             );
           }}
         </CldUploadWidget>
         {data && (
+          <div>
+            <InputField
+            label="File"
+            name="file"
+            defaultValue={data?.file}
+            register={register}
+            error={errors?.file}
+          />
           <InputField
             label="Id"
             name="id"
@@ -113,6 +126,7 @@ const ResourceForm = ({
             error={errors?.id}
             hidden
           />
+          </div>
         )}
       </div>
       {state.error && (

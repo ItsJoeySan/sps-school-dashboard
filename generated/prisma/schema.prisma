@@ -85,7 +85,7 @@ model Student {
   address     String
   image       String
   bloodType   String
-  gender      UserGender?
+  gender      UserGender
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   parentName  String
@@ -101,24 +101,25 @@ model Student {
 }
 
 model Teacher {
-  id         String      @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  surname    String?
-  username   String?     @unique
-  email      String      @unique
-  phone      String?
-  image      String?
-  bloodType  String?
-  gender     UserGender?
-  address    String
-  createdAt  DateTime    @default(now())
-  subjectIDs String[]    @db.ObjectId
-  subjects   Subject[]   @relation(fields: [subjectIDs], references: [id])
-  lessons    Lesson[]
-  classes    Class[]
-  birthday   DateTime
-  User       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String      @unique @db.ObjectId
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  surname       String?
+  username      String?    @unique
+  email         String     @unique
+  phone         String?
+  image         String?
+  qualification String?
+  bloodType     String?
+  gender        UserGender
+  address       String
+  createdAt     DateTime   @default(now())
+  subjectIDs    String[]   @db.ObjectId
+  subjects      Subject[]  @relation(fields: [subjectIDs], references: [id])
+  lessons       Lesson[]
+  classes       Class[]
+  birthday      DateTime
+  User          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String     @unique @db.ObjectId
 }
 
 model Grade {

@@ -8,6 +8,7 @@ import { Class, Resource, Prisma } from "@/generated/prisma";
 import Image from "next/image";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Link from "next/link";
 
 type ResourceList = Resource;
 const Resources = async (props: {
@@ -45,7 +46,7 @@ const Resources = async (props: {
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-joeyPurpleLight"
     >
       <td className="flex items-center gap-4 p-4">{item.title}</td>
-      <td className="flex items-center gap-4 p-4">{item.file}</td>
+      <td className="hidden md:table-cell"><Link href={item.file} target="_blank" download={item.title}>Download File</Link></td>
       <td>
         <div className="flex items-center gap-2">
           {role === "admin" && (
@@ -99,9 +100,6 @@ const Resources = async (props: {
   const [data, count] = await prisma.$transaction([
     prisma.resource.findMany({
       where: query,
-      // include: {
-      //   class: true,
-      // },
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (p - 1),
     }),

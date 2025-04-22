@@ -4,7 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import InputField from "../InputField";
 import Image from "next/image";
-import { Dispatch, SetStateAction, startTransition, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  startTransition,
+  useEffect,
+  useState,
+} from "react";
 import { teacherSchema, TeacherSchema } from "@/lib/formValidationSchemas";
 import { useActionState } from "react";
 import { createTeacher, updateTeacher } from "@/lib/actions";
@@ -42,7 +48,6 @@ const TeacherForm = ({
   //   }
   // );
 
-
   //you have to fix this error on action.ts createTeacher maybe that's not matching with your type here
   const [state, formAction] = useActionState(
     type === "create" ? createTeacher : updateTeacher,
@@ -50,7 +55,7 @@ const TeacherForm = ({
       success: false,
       error: false,
     }
-  )
+  );
 
   const createMyUser = async (data: TeacherSchema) => {
     try {
@@ -62,20 +67,19 @@ const TeacherForm = ({
         data: {
           image: img?.secure_url,
           username: data.username,
-          surname: data.surname
-        }
-      })
-      return {success:true, id : result.data?.user.id};
+          surname: data.surname,
+        },
+      });
+      return { success: true, id: result.data?.user.id };
     } catch (error) {
-      return {success: false, error}
+      return { success: false, error };
     }
+  };
 
-  }
-
-  const onSubmit = handleSubmit( async (data) => {
-    const result = await createMyUser({...data, image: img?.secure_url});
-    if(result.success){
-        formAction({ ...data,id: result.id, image: img?.secure_url });
+  const onSubmit = handleSubmit(async (data) => {
+    const result = await createMyUser({ ...data, image: img?.secure_url });
+    if (result.success) {
+      formAction({ ...data, id: result.id, image: img?.secure_url });
     }
   });
 
@@ -147,6 +151,13 @@ const TeacherForm = ({
           defaultValue={data?.phone}
           register={register}
           error={errors.phone}
+        />
+        <InputField
+          label="Qualification"
+          name="qualification"
+          defaultValue={data?.qualification}
+          register={register}
+          error={errors.qualification}
         />
         <InputField
           label="Address"
@@ -229,7 +240,12 @@ const TeacherForm = ({
                 className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer"
                 onClick={() => open()}
               >
-                <Image src={img ? img.thumbnail_url : "/upload.png"}  alt="" width={28} height={28} />
+                <Image
+                  src={img ? img.secure_url : "/upload.png"}
+                  alt=""
+                  width={28}
+                  height={28}
+                />
                 <span>Upload a photo</span>
               </div>
             );

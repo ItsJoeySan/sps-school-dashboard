@@ -37,6 +37,7 @@ export const teacherSchema = z.object({
     .email({ message: "Invalid email address!" })
     .or(z.literal("")),
   phone: z.string().optional(),
+  qualification: z.string().optional(),
   address: z.string(),
   image: z.string().optional(),
   bloodType: z.string().min(1, { message: "Blood Type is required!" }),
@@ -140,8 +141,8 @@ export type AlumniSchema = z.infer<typeof alumniSchema>;
 
 export const resourceSchema = z.object({
   id: z.string().optional(),
-  title: z.string().min(1, {message: "title is required!"}),
-  file: z.string({message: "resource file is required!"})
+  title: z.string().min(2, {message: "title is required!"}),
+  file: z.string().optional()
 });
 
 export type ResourceSchema = z.infer<typeof resourceSchema>;

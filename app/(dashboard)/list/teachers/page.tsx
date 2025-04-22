@@ -22,8 +22,13 @@ const TeacherListPage = async (props: {
   const role = session?.user.role as string;
   const columns = [
     {
-      header: "Info",
-      accessor: "info",
+      header: "Profile",
+      accessor: "image",
+    },
+    {
+      header: "User Name",
+      accessor: "username",
+      className: "hidden md:table-cell",
     },
     {
       header: "Teacher ID",
@@ -98,8 +103,10 @@ const TeacherListPage = async (props: {
             // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
             //   <Image src="/delete.png" alt="" width={16} height={16} />
             // </button>
-            <FormContainer table="teacher" type="delete" id={item.id} />
-          )}
+            <div className="flex gap-2">
+            <FormContainer table="teacher" type="update" id={item.id} />
+            <FormContainer table="teacher" type="delete" id={item.userId} />
+         </div> )}
         </div>
       </td>
     </tr>

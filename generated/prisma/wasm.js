@@ -197,6 +197,7 @@ exports.Prisma.TeacherScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   image: 'image',
+  qualification: 'qualification',
   bloodType: 'bloodType',
   gender: 'gender',
   address: 'address',
