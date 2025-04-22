@@ -77,9 +77,14 @@ const TeacherForm = ({
   };
 
   const onSubmit = handleSubmit(async (data) => {
-    const result = await createMyUser({ ...data, image: img?.secure_url });
-    if (result.success) {
-      formAction({ ...data, id: result.id, image: img?.secure_url });
+    if(type="create"){
+      const result = await createMyUser({ ...data, image: img?.secure_url });
+      if (result.success) {
+        formAction({ ...data, id: result.id, image: img?.secure_url });
+      }
+    }else{
+      //need to work on it more
+      formAction({ ...data,  image: img?.secure_url });
     }
   });
 

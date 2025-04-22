@@ -160,6 +160,7 @@ export const createTeacher = async (
         address: data.address,
         image: data.image,
         bloodType: data.bloodType,
+        qualification: data.qualification,
         gender: data.gender,
         birthday: data.birthday,
         subjects: {
@@ -196,9 +197,19 @@ export const updateTeacher = async (
         id: data.id,
       },
       data: {
+        username: data.username,
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        image: data.image,
+        bloodType: data.bloodType,
+        qualification: data.qualification,
+        gender: data.gender,
         birthday: data.birthday,
         subjects: {
-          set: data.subjects?.map((subjectId: string) => ({
+          connect: data.subjects?.map((subjectId: string) => ({
             id: subjectId,
           })),
         },
