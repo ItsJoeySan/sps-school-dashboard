@@ -33,7 +33,7 @@ const AdminPage = async  (props: {
         </div>
         {/* BOTTOM CHART */}
         <div className="w-full h-[500px]">
-          <FinanceChart />
+          {/* <FinanceChart /> */}
         </div>
       </div>
       {/* RIGHT */}

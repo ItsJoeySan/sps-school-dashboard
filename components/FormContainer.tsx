@@ -20,7 +20,8 @@ export type FormContainerProps = {
     | "announcement"
     | "alumni"
     | "resource"
-    | "job";
+    | "job"
+    | "lesson";
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
@@ -103,14 +104,24 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
         });
         relatedData = { resources: resources };
         break;
-        case "job":
-          const jobs = await prisma.job.findMany({
-            orderBy: {
-              createdAt: "desc",
+      case "job":
+        const jobs = await prisma.job.findMany({
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+        relatedData = { jobs: jobs };
+        break;
+        case "lesson":
+          const lessons = await prisma.lesson.findMany({
+            orderBy:{
+              createdAt: "desc"
             },
-          });
-          relatedData = { jobs: jobs };
-          break;
+            include: {
+              teacher: true,
+              
+            }
+          })
       default:
         break;
     }

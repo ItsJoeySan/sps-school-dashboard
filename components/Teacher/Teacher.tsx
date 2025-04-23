@@ -3,6 +3,7 @@ import BigCalendarContainer from '../BigCalendarContainer'
 import Announcements from '../Announcements'
 import { headers } from 'next/headers';
 import { auth } from '@/lib/auth';
+import EventCalendar from '../EventCalendar';
 
 const Teacher = async () => {
       const session = await auth.api.getSession({
@@ -21,6 +22,7 @@ const Teacher = async () => {
     </div>
     {/* RIGHT */}
     <div className="w-full xl:w-1/3 flex flex-col gap-8">
+      <EventCalendar />
       <Announcements />
     </div>
   </div>

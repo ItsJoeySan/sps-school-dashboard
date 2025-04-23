@@ -101,32 +101,35 @@ model Student {
 }
 
 model Teacher {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   surname       String?
-  username      String?     @unique
-  email         String      @unique
+  username      String?    @unique
+  email         String     @unique
   phone         String?
   image         String?
   qualification String?
   bloodType     String?
   gender        UserGender
   address       String
-  createdAt     DateTime    @default(now())
-  subjectIDs    String[]    @db.ObjectId
-  subjects      Subject[]   @relation(fields: [subjectIDs], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt()
+  subjectIDs    String[]   @db.ObjectId
+  subjects      Subject[]  @relation(fields: [subjectIDs], references: [id])
   lessons       Lesson[]
   classes       Class[]
   birthday      DateTime
-  User          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        String      @unique @db.ObjectId
+  User          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String     @unique @db.ObjectId
 }
 
 model Grade {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  level    String    @unique
-  students Student[]
-  classess Class[]
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  level     String    @unique
+  students  Student[]
+  classess  Class[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt()
 }
 
 model Class {
@@ -142,6 +145,8 @@ model Class {
   grade         Grade          @relation(fields: [gradeId], references: [id])
   events        Event[]
   announcements Announcement[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt()
 }
 
 model Subject {
@@ -150,15 +155,16 @@ model Subject {
   teachersIDs String[]  @db.ObjectId
   teachers    Teacher[] @relation(fields: [teachersIDs], references: [id])
   lessons     Lesson[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt()
 }
 
 model Lesson {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  day       Day
-  startTime DateTime
-  endTime   DateTime
-
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  day         Day
+  startTime   DateTime
+  endTime     DateTime
   subjectId   String       @db.ObjectId
   subject     Subject      @relation(fields: [subjectId], references: [id])
   classId     String       @db.ObjectId
@@ -168,6 +174,8 @@ model Lesson {
   exams       Exam[]
   assignments Assignment[]
   attendances Attendance[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model Exam {
@@ -176,9 +184,11 @@ model Exam {
   startTime DateTime
   endTime   DateTime
 
-  lessonId String   @db.ObjectId
-  lesson   Lesson   @relation(fields: [lessonId], references: [id])
-  results  Result[]
+  lessonId  String   @db.ObjectId
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  results   Result[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model Assignment {
@@ -187,9 +197,11 @@ model Assignment {
   startDate DateTime
   dueDate   DateTime
 
-  lessonId String   @db.ObjectId
-  lesson   Lesson   @relation(fields: [lessonId], references: [id])
-  results  Result[]
+  lessonId  String   @db.ObjectId
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  results   Result[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model Result {
@@ -202,6 +214,8 @@ model Result {
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   studentId    String      @db.ObjectId
   student      Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt()
 }
 
 model Attendance {
@@ -209,10 +223,12 @@ model Attendance {
   date    DateTime
   present Boolean
 
-  studentId String  @db.ObjectId
-  student   Student @relation(fields: [studentId], references: [id])
-  lessonId  String  @db.ObjectId
-  lesson    Lesson  @relation(fields: [lessonId], references: [id])
+  studentId String   @db.ObjectId
+  student   Student  @relation(fields: [studentId], references: [id])
+  lessonId  String   @db.ObjectId
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model Event {
@@ -234,8 +250,10 @@ model Announcement {
   description String
   date        DateTime
 
-  classId String? @db.ObjectId
-  class   Class?  @relation(fields: [classId], references: [id])
+  classId   String?  @db.ObjectId
+  class     Class?   @relation(fields: [classId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model Alumni {
@@ -286,6 +304,7 @@ enum Day {
   WEDNESDAY
   THURSDAY
   FRIDAY
+  SATURDAY
 }
 
 enum BranchType {

@@ -22,17 +22,12 @@ const TeacherListPage = async (props: {
   const role = session?.user.role as string;
   const columns = [
     {
-      header: "Profile",
+      header: "Info",
       accessor: "image",
     },
     {
-      header: "User Name",
+      header: "UserName",
       accessor: "username",
-      className: "hidden md:table-cell",
-    },
-    {
-      header: "Teacher ID",
-      accessor: "teacherId",
       className: "hidden md:table-cell",
     },
     {
@@ -68,9 +63,9 @@ const TeacherListPage = async (props: {
   const renderRow = (item: TeacherList) => (
     <tr
       key={item.id}
-      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
+      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-joeyPurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">
+      <td className="flex items-center gap-2 p-4">
         <Image
           src={item.image || "/noAvatar.png"}
           alt=""
@@ -79,7 +74,7 @@ const TeacherListPage = async (props: {
           className="md:hidden xl:block rounded-full object-cover"
         />
         <div className="flex flex-col">
-          <h3 className="font-semibold">{item.name}</h3>
+          <h3 className="font-semibold"><span>{item.name}</span> <span>{item.surname}</span></h3>
           <p className="text-xs text-gray-500">{item?.email}</p>
         </div>
       </td>
@@ -95,12 +90,12 @@ const TeacherListPage = async (props: {
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-              <Image src="/view.png" alt="" width={16} height={16} />
+            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-joeySky">
+              <Image src="/view.png" alt="" width={30} height={30} />
             </button>
           </Link>
           {role === "admin" && (
-            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
+            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-joeyPurple">
             //   <Image src="/delete.png" alt="" width={16} height={16} />
             // </button>
             <div className="flex gap-2">
@@ -161,10 +156,10 @@ const TeacherListPage = async (props: {
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
           <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
+            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-joeyYellow">
               <Image src="/filter.png" alt="" width={14} height={14} />
             </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
+            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-joeyYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
