@@ -1,12 +1,12 @@
 import prisma from "@/lib/prisma";
 
 export const GET = async () => {
-    const teachers = await prisma.job.findMany({
+    const jobs = await prisma.job.findMany({
         orderBy: {
             createdAt: 'desc'
         },
 
     });
-    return Response.json({ teachers })
+    return Response.json({ jobs })
 }
 
