@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 
 export const GET = async () => {
-    const resources = await prisma.alumni.findMany({
+    const resources = await prisma.resource.findMany({
         orderBy: {
             createdAt: 'desc'
         },
